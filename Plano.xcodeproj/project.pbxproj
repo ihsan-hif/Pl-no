@@ -18,6 +18,11 @@
 		2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FCF243B09820022C9E7 /* Plano.xcdatamodeld */; };
 		2F570FD3243B09830022C9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F570FD2243B09830022C9E7 /* Assets.xcassets */; };
 		2F570FD6243B09830022C9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F570FD4243B09830022C9E7 /* LaunchScreen.storyboard */; };
+		6D32B850243C343C00CA848C /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D32B84F243C343C00CA848C /* TestViewController.swift */; };
+		6D32B854243C35BC00CA848C /* toDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D32B853243C35BC00CA848C /* toDoViewController.swift */; };
+		6D32B858243C45B500CA848C /* EventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D32B857243C45B500CA848C /* EventViewer.swift */; };
+		6D32B85A243C48CE00CA848C /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D32B859243C48CE00CA848C /* events.json */; };
+		E5C2E189B66BE6A63BCD366C /* Pods_Plano.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C94B0AD2AD533D3984833AB /* Pods_Plano.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,13 @@
 		2F570FD2243B09830022C9E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F570FD5243B09830022C9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F570FD7243B09830022C9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C94B0AD2AD533D3984833AB /* Pods_Plano.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Plano.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D32B84F243C343C00CA848C /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestViewController.swift; path = ../../../../../Documents/TestViewController.swift; sourceTree = "<group>"; };
+		6D32B853243C35BC00CA848C /* toDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toDoViewController.swift; sourceTree = "<group>"; };
+		6D32B857243C45B500CA848C /* EventViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewer.swift; sourceTree = "<group>"; };
+		6D32B859243C48CE00CA848C /* events.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		F3C54CB50C9EAD65AC9E26F1 /* Pods-Plano.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plano.debug.xcconfig"; path = "Target Support Files/Pods-Plano/Pods-Plano.debug.xcconfig"; sourceTree = "<group>"; };
+		F4A4463B627B337B4DDEB94D /* Pods-Plano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plano.release.xcconfig"; path = "Target Support Files/Pods-Plano/Pods-Plano.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5C2E189B66BE6A63BCD366C /* Pods_Plano.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +135,7 @@
 		2F02A8F1243B86EF000D9898 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6D32B84F243C343C00CA848C /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -132,6 +146,7 @@
 				2F570FC5243B09820022C9E7 /* Plano */,
 				2F570FC4243B09820022C9E7 /* Products */,
 				C0081DB8990AD162DF33F463 /* Pods */,
+				805E6F809D44BF36D01462F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +166,7 @@
 				2F02A8E9243B8658000D9898 /* Schedule */,
 				2F02A8E8243B8643000D9898 /* Todo */,
 				2F570FC6243B09820022C9E7 /* AppDelegate.swift */,
+				6D32B857243C45B500CA848C /* EventViewer.swift */,
 				2F570FC8243B09820022C9E7 /* SceneDelegate.swift */,
 				2F570FCA243B09820022C9E7 /* ViewController.swift */,
 				2F570FCC243B09820022C9E7 /* Main.storyboard */,
@@ -159,13 +175,25 @@
 				2F570FD4243B09830022C9E7 /* LaunchScreen.storyboard */,
 				2F570FD7243B09830022C9E7 /* Info.plist */,
 				2F570FCF243B09820022C9E7 /* Plano.xcdatamodeld */,
+				6D32B853243C35BC00CA848C /* toDoViewController.swift */,
+				6D32B859243C48CE00CA848C /* events.json */,
 			);
 			path = Plano;
+			sourceTree = "<group>";
+		};
+		805E6F809D44BF36D01462F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C94B0AD2AD533D3984833AB /* Pods_Plano.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C0081DB8990AD162DF33F463 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				F3C54CB50C9EAD65AC9E26F1 /* Pods-Plano.debug.xcconfig */,
+				F4A4463B627B337B4DDEB94D /* Pods-Plano.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -177,9 +205,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2F570FDA243B09830022C9E7 /* Build configuration list for PBXNativeTarget "Plano" */;
 			buildPhases = (
+				75D048CA5F6A9578C75849F7 /* [CP] Check Pods Manifest.lock */,
 				2F570FBF243B09820022C9E7 /* Sources */,
 				2F570FC0243B09820022C9E7 /* Frameworks */,
 				2F570FC1243B09820022C9E7 /* Resources */,
+				435B8FCD56EEE56FE42B8736 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,6 +262,7 @@
 				2F02A8F3243B8709000D9898 /* Todo.storyboard in Resources */,
 				2F570FD6243B09830022C9E7 /* LaunchScreen.storyboard in Resources */,
 				2F570FD3243B09830022C9E7 /* Assets.xcassets in Resources */,
+				6D32B85A243C48CE00CA848C /* events.json in Resources */,
 				2F570FCE243B09820022C9E7 /* Main.storyboard in Resources */,
 				2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */,
 			);
@@ -239,15 +270,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		435B8FCD56EEE56FE42B8736 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plano/Pods-Plano-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Plano/Pods-Plano-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Plano/Pods-Plano-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75D048CA5F6A9578C75849F7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Plano-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2F570FBF243B09820022C9E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D32B858243C45B500CA848C /* EventViewer.swift in Sources */,
 				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
+				6D32B854243C35BC00CA848C /* toDoViewController.swift in Sources */,
 				2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */,
 				2F570FCB243B09820022C9E7 /* ViewController.swift in Sources */,
 				2F570FC7243B09820022C9E7 /* AppDelegate.swift in Sources */,
+				6D32B850243C343C00CA848C /* TestViewController.swift in Sources */,
 				2F570FC9243B09820022C9E7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,10 +466,11 @@
 		};
 		2F570FDB243B09830022C9E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3C54CB50C9EAD65AC9E26F1 /* Pods-Plano.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWVAEMBXMM;
+				DEVELOPMENT_TEAM = 82B62MV22U;
 				INFOPLIST_FILE = Plano/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -409,10 +486,11 @@
 		};
 		2F570FDC243B09830022C9E7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4A4463B627B337B4DDEB94D /* Pods-Plano.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWVAEMBXMM;
+				DEVELOPMENT_TEAM = 82B62MV22U;
 				INFOPLIST_FILE = Plano/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
