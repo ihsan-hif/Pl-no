@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1C43EB243B743B007E75A8 /* ScheduleVC.swift */; };
+		2F02A8F3243B8709000D9898 /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F2243B8709000D9898 /* Todo.storyboard */; };
+		2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F4243B871B000D9898 /* Schedule.storyboard */; };
+		2F02A8F7243B8733000D9898 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F6243B8733000D9898 /* Profile.storyboard */; };
 		2F570FC7243B09820022C9E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FC6243B09820022C9E7 /* AppDelegate.swift */; };
 		2F570FC9243B09820022C9E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FC8243B09820022C9E7 /* SceneDelegate.swift */; };
 		2F570FCB243B09820022C9E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FCA243B09820022C9E7 /* ViewController.swift */; };
@@ -17,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C1C43EB243B743B007E75A8 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		2F02A8F2243B8709000D9898 /* Todo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Todo.storyboard; sourceTree = "<group>"; };
+		2F02A8F4243B871B000D9898 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
+		2F02A8F6243B8733000D9898 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		2F570FC3243B09820022C9E7 /* Plano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F570FC6243B09820022C9E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F570FC8243B09820022C9E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,11 +47,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F02A8E8243B8643000D9898 /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				2F02A8F1243B86EF000D9898 /* Controller */,
+				2F02A8F0243B86E9000D9898 /* View */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		2F02A8E9243B8658000D9898 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				2F02A8EF243B86E1000D9898 /* Controller */,
+				2F02A8EE243B86D9000D9898 /* View */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		2F02A8EA243B8662000D9898 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				2F02A8ED243B86B6000D9898 /* Controller */,
+				2F02A8EC243B86AC000D9898 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		2F02A8EB243B8699000D9898 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2F02A8EC243B86AC000D9898 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F02A8F6243B8733000D9898 /* Profile.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F02A8ED243B86B6000D9898 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2F02A8EE243B86D9000D9898 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F02A8F4243B871B000D9898 /* Schedule.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F02A8EF243B86E1000D9898 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2F02A8F0243B86E9000D9898 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F02A8F2243B8709000D9898 /* Todo.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F02A8F1243B86EF000D9898 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		2F570FBA243B09820022C9E7 = {
 			isa = PBXGroup;
 			children = (
 				2F570FC5243B09820022C9E7 /* Plano */,
 				2F570FC4243B09820022C9E7 /* Products */,
+				C0081DB8990AD162DF33F463 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,16 +146,28 @@
 		2F570FC5243B09820022C9E7 /* Plano */ = {
 			isa = PBXGroup;
 			children = (
+				2F02A8EB243B8699000D9898 /* Model */,
+				2F02A8EA243B8662000D9898 /* Profile */,
+				2F02A8E9243B8658000D9898 /* Schedule */,
+				2F02A8E8243B8643000D9898 /* Todo */,
 				2F570FC6243B09820022C9E7 /* AppDelegate.swift */,
 				2F570FC8243B09820022C9E7 /* SceneDelegate.swift */,
 				2F570FCA243B09820022C9E7 /* ViewController.swift */,
 				2F570FCC243B09820022C9E7 /* Main.storyboard */,
+				2C1C43EB243B743B007E75A8 /* ScheduleVC.swift */,
 				2F570FD2243B09830022C9E7 /* Assets.xcassets */,
 				2F570FD4243B09830022C9E7 /* LaunchScreen.storyboard */,
 				2F570FD7243B09830022C9E7 /* Info.plist */,
 				2F570FCF243B09820022C9E7 /* Plano.xcdatamodeld */,
 			);
 			path = Plano;
+			sourceTree = "<group>";
+		};
+		C0081DB8990AD162DF33F463 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,9 +228,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F02A8F7243B8733000D9898 /* Profile.storyboard in Resources */,
+				2F02A8F3243B8709000D9898 /* Todo.storyboard in Resources */,
 				2F570FD6243B09830022C9E7 /* LaunchScreen.storyboard in Resources */,
 				2F570FD3243B09830022C9E7 /* Assets.xcassets in Resources */,
 				2F570FCE243B09820022C9E7 /* Main.storyboard in Resources */,
+				2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
 				2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */,
 				2F570FCB243B09820022C9E7 /* ViewController.swift in Sources */,
 				2F570FC7243B09820022C9E7 /* AppDelegate.swift in Sources */,
@@ -289,7 +393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6X2P3HV7HT;
+				DEVELOPMENT_TEAM = QWVAEMBXMM;
 				INFOPLIST_FILE = Plano/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -299,7 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MC1-G7.Plano";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -308,7 +412,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6X2P3HV7HT;
+				DEVELOPMENT_TEAM = QWVAEMBXMM;
 				INFOPLIST_FILE = Plano/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,7 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "MC1-G7.Plano";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
