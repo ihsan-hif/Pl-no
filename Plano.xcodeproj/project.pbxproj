@@ -160,11 +160,8 @@
 		2F02A8F1243B86EF000D9898 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				2C1C43ED243C18DB007E75A8 /* TodoTableVC.swift */,
 				2C1C43F3243C2296007E75A8 /* AddTodoTableVC.swift */,
-=======
->>>>>>> parent of 440e2af... DefaulTemplateCalender
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,14 +286,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
-<<<<<<< HEAD
 				6D32B854243C35BC00CA848C /* toDoViewController.swift in Sources */,
 				2C66864C243C324300F3DD52 /* KeychainItem.swift in Sources */,
 				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
 				2C1C43EE243C18DB007E75A8 /* TodoTableVC.swift in Sources */,
 				2C1C43F4243C2296007E75A8 /* AddTodoTableVC.swift in Sources */,
-=======
->>>>>>> parent of 440e2af... DefaulTemplateCalender
 				2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */,
 				2F570FCB243B09820022C9E7 /* OnboardVC.swift in Sources */,
 				2C668655243C505400F3DD52 /* LandingVC.swift in Sources */,
