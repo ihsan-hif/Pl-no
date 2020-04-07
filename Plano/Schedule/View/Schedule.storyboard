@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uc5-Cr-Mxg">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uc5-Cr-Mxg">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Schedule-->
+        <!--ScheduleVC-->
         <scene sceneID="cLg-zX-oAR">
             <objects>
                 <viewController id="u4q-Nb-zCZ" customClass="ScheduleVC" customModule="Plano" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ld-QC-5rU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="2O6-lr-lbi"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Schedule" id="ajo-z9-brP"/>
+                    <navigationItem key="navigationItem" id="ajo-z9-brP"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sB-sO-rky" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -30,13 +30,13 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uc5-Cr-Mxg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Schedule" image="doc.text" catalog="system" id="SAI-V6-07o"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nkw-X2-onD">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nkw-X2-onD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="u4q-Nb-zCZ" kind="relationship" relationship="rootViewController" id="IWP-4d-bP7"/>
+                        <segue destination="u4q-Nb-zCZ" kind="relationship" relationship="rootViewController" id="clT-F8-9m1"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mga-aw-EbK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -45,6 +45,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="doc.text" catalog="system" width="56" height="64"/>
+        <image name="doc.text" catalog="system" width="115" height="128"/>
     </resources>
 </document>
