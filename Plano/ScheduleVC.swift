@@ -1,51 +1,30 @@
-//import UIKit
-//import KVKCalendar
 //
-//class ScheduleVC: UIViewController {
-//    var events = [Event]()
+//  ScheduleVC.swift
+//  Plano
 //
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        let calendar = CalendarView(frame: CGRect.init())
-//        calendar.dataSource = self
-//        view.addSubview(calendar)
-//        
-//        createEvents { (events) in
-//            self.events = events
-////            self.calendarView.reloadData()
-//        }
-//    }
-//}
+//  Created by Rayhan Martiza Faluda on 06/04/20.
+//  Copyright © 2020 Mini Challenge 1 - Group 7. All rights reserved.
 //
-//extension ScheduleVC {
-//    func createEvents(completion: ([Event]) -> Void) {
-//        let models = // Get events from storage / API
-//        var events = [Event]()
-//        
-//        for model in models {
-//            var event = Event()
-//            event.id = model.id
-//            event.start = model.startDate // start date event
-//            event.end = model.endDate // end date event
-//            event.color = model.color
-//            event.isAllDay = model.allDay
-//            event.isContainsFile = !model.files.isEmpty
-//        
-//            // Add text event (title, info, location, time)
-//            if model.allDay {
-//                event.text = "\(model.title)"
-//            } else {
-//                event.text = "\(startTime) - \(endTime)\n\(model.title)"
-//            }
-//            events.append(event)
-//        }
-//        completion(events)
-//    }
-//}
-//
-//extension ScheduleVC: CalendarDataSource {
-//    func eventsForCalendar() -> [Event] {
-//        return events
-//    }
-//}
+
+import UIKit
+
+class ScheduleVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
