@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YeG-08-Ga3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QXN-nU-iHU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -30,25 +30,72 @@
                             <outlet property="delegate" destination="YeG-08-Ga3" id="U7R-kM-pUp"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Team Members" id="FET-Rk-1Jw">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="nSJ-8Y-qTD">
+                            <connections>
+                                <segue destination="CX0-jH-ieb" kind="presentation" id="VKy-VK-8og"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uv-2q-Kd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="149" y="62"/>
+            <point key="canvasLocation" x="1057.9710144927537" y="61.607142857142854"/>
         </scene>
-        <!--View Controller-->
+        <!--Invite Member-->
         <scene sceneID="dmC-gl-8yd">
             <objects>
                 <viewController id="k26-lj-cnh" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pIA-f5-iK1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="pA2-uU-Piy"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Invite Member" id="FlD-x5-Xrv">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="dFI-Ht-u9m"/>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="9t8-51-k0t"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K8n-YB-Ivo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="843" y="62"/>
+            <point key="canvasLocation" x="2904" y="62"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WrZ-xo-5zU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QXN-nU-iHU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mIE-Od-AvT">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YeG-08-Ga3" kind="relationship" relationship="rootViewController" id="FtB-Om-rcJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Qd-hO-FEq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="147.82608695652175" y="61.607142857142854"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FdL-s8-bsy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CX0-jH-ieb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VfC-19-NN8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k26-lj-cnh" kind="relationship" relationship="rootViewController" id="mtU-6x-JJn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dXF-w1-S7O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2046" y="62"/>
         </scene>
     </scenes>
 </document>
