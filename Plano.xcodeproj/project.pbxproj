@@ -25,6 +25,7 @@
 		2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FCF243B09820022C9E7 /* Plano.xcdatamodeld */; };
 		2F570FD3243B09830022C9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F570FD2243B09830022C9E7 /* Assets.xcassets */; };
 		2F570FD6243B09830022C9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F570FD4243B09830022C9E7 /* LaunchScreen.storyboard */; };
+		2F7E177F243DE9E900AB4AAB /* gitignore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F7E177E243DE9E900AB4AAB /* gitignore.swift */; };
 		2FF85078243D604600B25097 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FF85077243D604600B25097 /* TeamMembers.storyboard */; };
 		2FF8507A243D616B00B25097 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FF85079243D616B00B25097 /* Notifications.storyboard */; };
 		6D147310243C7C0C001E95A8 /* EventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D14730F243C7C0C001E95A8 /* EventViewer.swift */; };
@@ -52,6 +53,7 @@
 		2F570FD2243B09830022C9E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F570FD5243B09830022C9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F570FD7243B09830022C9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F7E177E243DE9E900AB4AAB /* gitignore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gitignore.swift; sourceTree = "<group>"; };
 		2FF85077243D604600B25097 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
 		2FF85079243D616B00B25097 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		46D049C68B9ED551AAC80964 /* Pods-Plano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plano.release.xcconfig"; path = "Target Support Files/Pods-Plano/Pods-Plano.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 		2F570FBA243B09820022C9E7 = {
 			isa = PBXGroup;
 			children = (
+				2F7E177E243DE9E900AB4AAB /* gitignore.swift */,
 				2F570FC5243B09820022C9E7 /* Plano */,
 				2F570FC4243B09820022C9E7 /* Products */,
 				C0081DB8990AD162DF33F463 /* Pods */,
@@ -363,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F7E177F243DE9E900AB4AAB /* gitignore.swift in Sources */,
 				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
 				2C66864C243C324300F3DD52 /* KeychainItem.swift in Sources */,
 				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
