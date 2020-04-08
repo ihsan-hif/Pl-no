@@ -10,8 +10,6 @@ import UIKit
 import AuthenticationServices
 
 class TodoTableVC: UITableViewController {
-
-    @IBOutlet weak var signOutButtonOutlet: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +23,6 @@ class TodoTableVC: UITableViewController {
     
     
     // MARK: - IBAction
-
-    @IBAction func signOutButton(_ sender: UIBarButtonItem) {
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
-            switch credentialState {
-            case .authorized:
-                KeychainItem.deleteUserIdentifierFromKeychain()
-            case .revoked, .notFound:
-                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
-                break
-            default:
-                break
-            }
-        }
-        // Display the login controller again.
-        DispatchQueue.main.async {
-            self.showLoginViewController()
-        }
-    }
     
     
     // MARK: - Functions

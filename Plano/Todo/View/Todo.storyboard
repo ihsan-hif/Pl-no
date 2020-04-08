@@ -49,20 +49,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Todo" id="DAI-C6-GgB">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="yBr-Jg-7Js">
-                            <connections>
-                                <action selector="signOutButton:" destination="y1u-Pl-ax6" id="ikp-eQ-SxU"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vo4-Kb-pvB">
                             <connections>
                                 <segue destination="vAo-4D-TrQ" kind="presentation" id="VfW-hS-lV1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="signOutButtonOutlet" destination="yBr-Jg-7Js" id="8q2-Gg-oeU"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mr-0i-Ida" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

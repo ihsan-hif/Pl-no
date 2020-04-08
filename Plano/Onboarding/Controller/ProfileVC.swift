@@ -7,19 +7,58 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class ProfileVC: UIViewController {
 
+    @IBOutlet weak var signInSignOutLabelOutlet: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
+            switch credentialState {
+            case .authorized:
+                DispatchQueue.main.async {
+                    self.signInSignOutLabelOutlet.text = "Sign Out"
+                    self.signInSignOutLabelOutlet.textColor = .systemRed
+                }
+            case .revoked, .notFound:
+                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
+                DispatchQueue.main.async {
+                    self.signInSignOutLabelOutlet.text = "Sign In"
+                    self.signInSignOutLabelOutlet.textColor = .systemBlue
+                }
+            default:
+                break
+            }
+        }
+    }
+    
+    
+    // MARK: - IBAction
+    
     @IBAction func teamMemberButton(_ sender: UIButton) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "teamMembersVC") as! UITableViewController
         self.show(vc, sender: nil)
     }
+    
+    @IBAction func signInSignOutButtonAction(_ sender: UIButton) {
+        KeychainItem.deleteUserIdentifierFromKeychain()
+        // Display the login controller again.
+        DispatchQueue.main.async {
+            self.showLoginViewController()
+            self.signInSignOutLabelOutlet.text = "Sign In"
+            self.signInSignOutLabelOutlet.textColor = .systemBlue
+        }
+    }
+    
     
     /*
     // MARK: - Navigation
