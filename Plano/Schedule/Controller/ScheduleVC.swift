@@ -58,14 +58,29 @@ final class ScheduleVC: UIViewController {
         return calendar
     }()
     
+//    private lazy var segmentedControl: UISegmentedControl = {
+//        let array: [CalendarType]
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            array = CalendarType.allCases
+//        } else {
+//            array = CalendarType.allCases.filter({ $0 != .year })
+//        }
+//        let control = UISegmentedControl(items: array.map({ $0.rawValue.capitalized }))
+//        control.tintColor = .red
+//        control.selectedSegmentIndex = 2
+//        control.addTarget(self, action: #selector(switchCalendar), for: .valueChanged)
+//        return control
+//    }()
+    
     private lazy var segmentedControl: UISegmentedControl = {
-        let array: [CalendarType]
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            array = CalendarType.allCases
-        } else {
-            array = CalendarType.allCases.filter({ $0 != .year })
-        }
-        let control = UISegmentedControl(items: array.map({ $0.rawValue.capitalized }))
+        let array = ["Personal","Team"]
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            array = CalendarType.allCases
+//        } else {
+//            array = CalendarType.allCases.filter({ $0 != .year })
+//        }
+        let control = UISegmentedControl(items: array)
+        
         control.tintColor = .red
         control.selectedSegmentIndex = 0
         control.addTarget(self, action: #selector(switchCalendar), for: .valueChanged)
@@ -90,6 +105,7 @@ final class ScheduleVC: UIViewController {
         navigationItem.rightBarButtonItem = todayButton
         
         calendarView.addEventViewToDay(view: eventViewer)
+        calendarView.set(type: CalendarType.month, date: selectDate)
         
         loadEvents { [unowned self] (events) in
             self.events = events
@@ -99,8 +115,10 @@ final class ScheduleVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         var frame = view.frame
         frame.origin.y = 50
+        frame.size.height = 500
         calendarView.reloadFrame(frame)
     }
     
@@ -109,8 +127,8 @@ final class ScheduleVC: UIViewController {
     }
     
     @objc func switchCalendar(sender: UISegmentedControl) {
-        let type = CalendarType.allCases[sender.selectedSegmentIndex]
-        calendarView.set(type: type, date: selectDate)
+        let type = CalendarType.month
+        calendarView.set(type: CalendarType.month, date: selectDate)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
