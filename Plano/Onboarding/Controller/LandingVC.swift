@@ -9,7 +9,7 @@
 import UIKit
 import AuthenticationServices
 
-class LandingVC: UIViewController {
+class LandingVC: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,8 @@ class LandingVC: UIViewController {
             self.present(vc, animated: false, completion: nil)
         case .welcome:
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "onboardVC") as! OnboardVC
-            vc.modalPresentationStyle = .fullScreen
+            vc.modalPresentationStyle = .formSheet
+            vc.isModalInPresentation = true
             self.present(vc, animated: true, completion: nil)
         }
     }

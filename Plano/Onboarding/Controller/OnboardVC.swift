@@ -145,7 +145,8 @@ extension UIViewController {
     func showLoginViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let onboardVC = storyboard.instantiateViewController(withIdentifier: "onboardVC") as? OnboardVC {
-            onboardVC.modalPresentationStyle = .fullScreen
+            onboardVC.modalPresentationStyle = .formSheet
+            onboardVC.isModalInPresentation = true
             self.present(onboardVC, animated: true, completion: nil)
         }
     }
