@@ -25,9 +25,9 @@ class LandingVC: UITabBarController {
         appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
             switch credentialState {
             case .authorized:
-                DispatchQueue.main.async {
+                /* DispatchQueue.main.async {
                     self.pushTo(viewController: .home)
-                }
+                } */
                 
                 break // The Apple ID credential is valid.
             case .revoked, .notFound:

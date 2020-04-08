@@ -25,8 +25,15 @@ class OnboardVC: UIViewController {
         
         /// - Tag: add_appleid_button
         func setupProviderLoginView() {
-            let authorizationButton = ASAuthorizationAppleIDButton()
+            let isDarkTheme = view.traitCollection.userInterfaceStyle == .dark
+            let style: ASAuthorizationAppleIDButton.Style = isDarkTheme ? .white : .black
+            
+            let authorizationButton = ASAuthorizationAppleIDButton(type: .default, style: style)
             authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+            
+            let heightConstraint = authorizationButton.heightAnchor.constraint(equalToConstant: 44)
+            authorizationButton.addConstraint(heightConstraint)
+            
             self.signInWithAppleStackView.addArrangedSubview(authorizationButton)
         }
         
@@ -66,14 +73,14 @@ extension OnboardVC: ASAuthorizationControllerDelegate {
                 
             // Create an account in your system.
             let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
+            /* let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email */
                 
             // For the purpose of this demo app, store the `userIdentifier` in the keychain.
             self.saveUserInKeychain(userIdentifier)
                 
             // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
-            //self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email)
+            /* self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email) */
             self.dismiss(animated: true, completion: nil)
             
         case let passwordCredential as ASPasswordCredential:
@@ -131,6 +138,9 @@ extension OnboardVC: ASAuthorizationControllerDelegate {
     /// - Tag: did_complete_error
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
+        /* let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil) */
     }
 }
 
