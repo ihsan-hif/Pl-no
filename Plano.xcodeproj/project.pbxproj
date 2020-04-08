@@ -24,6 +24,8 @@
 		2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FCF243B09820022C9E7 /* Plano.xcdatamodeld */; };
 		2F570FD3243B09830022C9E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F570FD2243B09830022C9E7 /* Assets.xcassets */; };
 		2F570FD6243B09830022C9E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F570FD4243B09830022C9E7 /* LaunchScreen.storyboard */; };
+		2FF85078243D604600B25097 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FF85077243D604600B25097 /* TeamMembers.storyboard */; };
+		2FF8507A243D616B00B25097 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FF85079243D616B00B25097 /* Notifications.storyboard */; };
 		6D147310243C7C0C001E95A8 /* EventViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D14730F243C7C0C001E95A8 /* EventViewer.swift */; };
 		6D147312243C7C52001E95A8 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D147311243C7C52001E95A8 /* events.json */; };
 /* End PBXBuildFile section */
@@ -48,6 +50,8 @@
 		2F570FD2243B09830022C9E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F570FD5243B09830022C9E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F570FD7243B09830022C9E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FF85077243D604600B25097 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
+		2FF85079243D616B00B25097 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		46D049C68B9ED551AAC80964 /* Pods-Plano.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plano.release.xcconfig"; path = "Target Support Files/Pods-Plano/Pods-Plano.release.xcconfig"; sourceTree = "<group>"; };
 		6D14730F243C7C0C001E95A8 /* EventViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewer.swift; sourceTree = "<group>"; };
 		6D147311243C7C52001E95A8 /* events.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				2F02A8F6243B8733000D9898 /* Profile.storyboard */,
+				2FF85077243D604600B25097 /* TeamMembers.storyboard */,
+				2FF85079243D616B00B25097 /* Notifications.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -299,7 +305,9 @@
 				6D147312243C7C52001E95A8 /* events.json in Resources */,
 				2F570FD3243B09830022C9E7 /* Assets.xcassets in Resources */,
 				2F570FCE243B09820022C9E7 /* Main.storyboard in Resources */,
+				2FF8507A243D616B00B25097 /* Notifications.storyboard in Resources */,
 				2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */,
+				2FF85078243D604600B25097 /* TeamMembers.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
