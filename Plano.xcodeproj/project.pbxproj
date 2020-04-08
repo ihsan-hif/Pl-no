@@ -14,6 +14,7 @@
 		2C66864C243C324300F3DD52 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66864B243C324300F3DD52 /* KeychainItem.swift */; };
 		2C66864E243C343B00F3DD52 /* HelperExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66864D243C343B00F3DD52 /* HelperExtension.swift */; };
 		2C668655243C505400F3DD52 /* LandingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C668654243C505400F3DD52 /* LandingVC.swift */; };
+		2C668657243D77C900F3DD52 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C668656243D77C900F3DD52 /* ProfileVC.swift */; };
 		2F02A8F3243B8709000D9898 /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F2243B8709000D9898 /* Todo.storyboard */; };
 		2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F4243B871B000D9898 /* Schedule.storyboard */; };
 		2F02A8F7243B8733000D9898 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F6243B8733000D9898 /* Profile.storyboard */; };
@@ -38,6 +39,7 @@
 		2C66864B243C324300F3DD52 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		2C66864D243C343B00F3DD52 /* HelperExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperExtension.swift; sourceTree = "<group>"; };
 		2C668654243C505400F3DD52 /* LandingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVC.swift; sourceTree = "<group>"; };
+		2C668656243D77C900F3DD52 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileVC.swift; path = Plano/Onboarding/Controller/ProfileVC.swift; sourceTree = SOURCE_ROOT; };
 		2F02A8F2243B8709000D9898 /* Todo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Todo.storyboard; sourceTree = "<group>"; };
 		2F02A8F4243B871B000D9898 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		2F02A8F6243B8733000D9898 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		2F02A8ED243B86B6000D9898 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2C668656243D77C900F3DD52 /* ProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				2C1C43F4243C2296007E75A8 /* AddTodoTableVC.swift in Sources */,
 				2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */,
 				2F570FCB243B09820022C9E7 /* OnboardVC.swift in Sources */,
+				2C668657243D77C900F3DD52 /* ProfileVC.swift in Sources */,
 				2C668655243C505400F3DD52 /* LandingVC.swift in Sources */,
 				2C66864E243C343B00F3DD52 /* HelperExtension.swift in Sources */,
 				2F570FC7243B09820022C9E7 /* AppDelegate.swift in Sources */,
