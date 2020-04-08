@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class TodoTableVC: UITableViewController {
 
+    @IBOutlet weak var signOutButtonOutlet: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,15 +22,32 @@ class TodoTableVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
+    // MARK: - IBAction
 
     @IBAction func signOutButton(_ sender: UIBarButtonItem) {
-        KeychainItem.deleteUserIdentifierFromKeychain()
-        
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
+            switch credentialState {
+            case .authorized:
+                KeychainItem.deleteUserIdentifierFromKeychain()
+            case .revoked, .notFound:
+                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
+                break
+            default:
+                break
+            }
+        }
         // Display the login controller again.
         DispatchQueue.main.async {
             self.showLoginViewController()
         }
     }
+    
+    
+    // MARK: - Functions
+    
     
     // MARK: - Table view data source
 

@@ -237,7 +237,6 @@ extension UIViewController {
             return false
         }
     }
-
 }
 
 class RoundedImageView: UIImageView {

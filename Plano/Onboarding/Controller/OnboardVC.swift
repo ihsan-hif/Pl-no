@@ -12,58 +12,84 @@ import AuthenticationServices
 class OnboardVC: UIViewController {
     
     @IBOutlet weak var signInWithAppleStackView: UIStackView!
-
+    @IBOutlet weak var welcomeToPlanoLabel: UILabel!
+    
     override func viewDidLoad() {
-            super.viewDidLoad()
-            setupProviderLoginView()
-        }
-        
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            performExistingAccountSetupFlows()
-        }
-        
-        /// - Tag: add_appleid_button
-        func setupProviderLoginView() {
-            let isDarkTheme = view.traitCollection.userInterfaceStyle == .dark
-            let style: ASAuthorizationAppleIDButton.Style = isDarkTheme ? .white : .black
-            
-            let authorizationButton = ASAuthorizationAppleIDButton(type: .default, style: style)
-            authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
-            
-            let heightConstraint = authorizationButton.heightAnchor.constraint(equalToConstant: 44)
-            authorizationButton.addConstraint(heightConstraint)
-            
-            self.signInWithAppleStackView.addArrangedSubview(authorizationButton)
-        }
-        
-        // - Tag: perform_appleid_password_request
-        /// Prompts the user if an existing iCloud Keychain credential or Apple ID credential is found.
-        func performExistingAccountSetupFlows() {
-            // Prepare requests for both Apple ID and password providers.
-            let requests = [ASAuthorizationAppleIDProvider().createRequest(),
-                            ASAuthorizationPasswordProvider().createRequest()]
-            
-            // Create an authorization controller with the given requests.
-            let authorizationController = ASAuthorizationController(authorizationRequests: requests)
-            authorizationController.delegate = self
-            authorizationController.presentationContextProvider = self
-            authorizationController.performRequests()
-        }
-        
-        /// - Tag: perform_appleid_request
-        @objc
-        func handleAuthorizationAppleIDButtonPress() {
-            let appleIDProvider = ASAuthorizationAppleIDProvider()
-            let request = appleIDProvider.createRequest()
-            request.requestedScopes = [.fullName, .email]
-            
-            let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-            authorizationController.delegate = self
-            authorizationController.presentationContextProvider = self
-            authorizationController.performRequests()
-        }
+        super.viewDidLoad()
+        setupProviderLoginView()
+        customWelcomeLabel()
     }
+        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        performExistingAccountSetupFlows()
+    }
+    
+    
+    // MARK: - Customizations
+    
+    func customWelcomeLabel() {
+        let string: String = "Welcome to Pláno"
+        let mutableString = NSMutableAttributedString(string: string as String, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 34, weight: .bold)])
+        
+        mutableString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(red: 38.0 / 255.0, green: 176.0 / 255.0, blue: 235.0 / 255.0, alpha: 1), range: NSRange(location:11, length:5))
+        welcomeToPlanoLabel.attributedText = mutableString
+    }
+    
+    
+    // MARK: - IBAction
+    
+    @IBAction func skipButton(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    // MARK: - Sign In with Apple Functions
+    
+    /// - Tag: add_appleid_button
+    func setupProviderLoginView() {
+        let isDarkTheme = view.traitCollection.userInterfaceStyle == .dark
+        let style: ASAuthorizationAppleIDButton.Style = isDarkTheme ? .white : .black
+        
+        let authorizationButton = ASAuthorizationAppleIDButton(type: .default, style: style)
+        authorizationButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        
+        let heightConstraint = authorizationButton.heightAnchor.constraint(equalToConstant: 44)
+        authorizationButton.addConstraint(heightConstraint)
+        
+            self.signInWithAppleStackView.addArrangedSubview(authorizationButton)
+    }
+        
+    // - Tag: perform_appleid_password_request
+    /// Prompts the user if an existing iCloud Keychain credential or Apple ID credential is found.
+    func performExistingAccountSetupFlows() {
+        // Prepare requests for both Apple ID and password providers.
+        let requests = [ASAuthorizationAppleIDProvider().createRequest(),
+                        ASAuthorizationPasswordProvider().createRequest()]
+            
+        // Create an authorization controller with the given requests.
+        let authorizationController = ASAuthorizationController(authorizationRequests: requests)
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+        
+    /// - Tag: perform_appleid_request
+    @objc
+    func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+}
+
+
+// MARK: - Extensions
 
 extension OnboardVC: ASAuthorizationControllerDelegate {
     /// - Tag: did_complete_authorization

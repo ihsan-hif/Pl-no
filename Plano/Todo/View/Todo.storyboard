@@ -60,6 +60,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="signOutButtonOutlet" destination="yBr-Jg-7Js" id="8q2-Gg-oeU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Mr-0i-Ida" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
