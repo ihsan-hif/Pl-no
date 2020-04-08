@@ -193,36 +193,36 @@ extension ScheduleVC: CalendarDataSource {
 
 extension ScheduleVC {
     func loadEvents(completion: ([Event]) -> Void) {
-        var events = [Event]()
-        let decoder = JSONDecoder()
+//        var events = [Event]()
+//        let decoder = JSONDecoder()
                 
-        guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
-            let result = try? decoder.decode(ItemData.self, from: data) else { return }
-        
-        for (idx, item) in result.data.enumerated() {
-            let startDate = self.formatter(date: item.start)
-            let endDate = self.formatter(date: item.end)
-            let startTime = self.timeFormatter(date: startDate)
-            let endTime = self.timeFormatter(date: endDate)
-            
-            var event = Event()
-            event.id = idx
-            event.start = startDate
-            event.end = endDate
-            event.color = EventColor(item.color)
-            event.isAllDay = item.allDay
-            event.isContainsFile = !item.files.isEmpty
-            event.textForMonth = item.title
-            
-            if item.allDay {
-                event.text = "\(item.title)"
-            } else {
-                event.text = "\(startTime) - \(endTime)\n\(item.title)"
-            }
-            events.append(event)
-        }
-        completion(events)
+//        guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
+//            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
+//            let result = try? decoder.decode(ItemData.self, from: data) else { return }
+//
+//        for (idx, item) in result.data.enumerated() {
+//            let startDate = self.formatter(date: item.start)
+//            let endDate = self.formatter(date: item.end)
+//            let startTime = self.timeFormatter(date: startDate)
+//            let endTime = self.timeFormatter(date: endDate)
+//
+//            var event = Event()
+//            event.id = idx
+//            event.start = startDate
+//            event.end = endDate
+//            event.color = EventColor(item.color)
+//            event.isAllDay = item.allDay
+//            event.isContainsFile = !item.files.isEmpty
+//            event.textForMonth = item.title
+//
+//            if item.allDay {
+//                event.text = "\(item.title)"
+//            } else {
+//                event.text = "\(startTime) - \(endTime)\n\(item.title)"
+//            }
+//            events.append(event)
+//        }
+//        completion(events)
     }
     
     func timeFormatter(date: Date) -> String {
