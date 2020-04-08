@@ -118,7 +118,7 @@ final class ScheduleVC: UIViewController {
         
         var frame = view.frame
         frame.origin.y = 50
-        frame.size.height = 400
+        frame.size.height = 500
         calendarView.reloadFrame(frame)
     }
     
