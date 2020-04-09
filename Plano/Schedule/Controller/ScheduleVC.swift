@@ -11,15 +11,14 @@ import KVKCalendar
 
 final class ScheduleVC: UIViewController {
     
-    
-    
-    
-    
+    @IBOutlet weak var taskTable: UITableView!
     private var events = [Event]()
     
     private var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
+        let date = Date()
+//        return date
         return formatter.date(from: "14.12.2018") ?? Date()
     }()
     
@@ -111,6 +110,9 @@ final class ScheduleVC: UIViewController {
             self.events = events
             self.calendarView.reloadData()
         }
+        self.taskTable.delegate = self
+        self.taskTable.dataSource = self
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -138,6 +140,26 @@ final class ScheduleVC: UIViewController {
         }
     }
 }
+
+extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell")
+        cell?.textLabel!.text="tes123"
+        return cell!
+    }
+    
+    
+}
+
 
 extension ScheduleVC: CalendarDelegate {
     func didChangeEvent(_ event: Event, start: Date?, end: Date?) {
@@ -193,36 +215,38 @@ extension ScheduleVC: CalendarDataSource {
 
 extension ScheduleVC {
     func loadEvents(completion: ([Event]) -> Void) {
-//        var events = [Event]()
-//        let decoder = JSONDecoder()
+        var events = [Event]()
+        let decoder = JSONDecoder()
                 
-//        guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
-//            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
-//            let result = try? decoder.decode(ItemData.self, from: data) else { return }
-//
-//        for (idx, item) in result.data.enumerated() {
-//            let startDate = self.formatter(date: item.start)
-//            let endDate = self.formatter(date: item.end)
-//            let startTime = self.timeFormatter(date: startDate)
-//            let endTime = self.timeFormatter(date: endDate)
-//
-//            var event = Event()
-//            event.id = idx
-//            event.start = startDate
-//            event.end = endDate
-//            event.color = EventColor(item.color)
-//            event.isAllDay = item.allDay
-//            event.isContainsFile = !item.files.isEmpty
-//            event.textForMonth = item.title
-//
-//            if item.allDay {
-//                event.text = "\(item.title)"
-//            } else {
-//                event.text = "\(startTime) - \(endTime)\n\(item.title)"
-//            }
-//            events.append(event)
-//        }
-//        completion(events)
+        guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
+            let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
+            let result = try? decoder.decode(ItemData.self, from: data) else { return }
+
+        for (idx, item) in result.data.enumerated() {
+            let startDate = self.formatter(date: item.start)
+            let endDate = self.formatter(date: item.end)
+            let startTime = self.timeFormatter(date: startDate)
+            let endTime = self.timeFormatter(date: endDate)
+
+            var event = Event()
+            event.id = idx
+            event.start = startDate
+            event.end = endDate
+            event.color = EventColor(item.color)
+            event.isAllDay = item.allDay
+            event.isContainsFile = !item.files.isEmpty
+            event.textForMonth = item.title
+
+            if item.allDay {
+                event.text = "\(item.title)"
+            } else {
+                event.text = "\(startTime) - \(endTime)\n\(item.title)"
+            }
+            events.append(event)
+            
+        }
+        print(events[0])
+        completion(events)
     }
     
     func timeFormatter(date: Date) -> String {
