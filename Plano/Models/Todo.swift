@@ -15,7 +15,7 @@ public class Todo: NSManagedObject {
     static func fetchAll(viewContext: NSManagedObjectContext = AppDelegate.viewContext) -> [Todo] {
         //let request : NSFetchRequest<Task> = Task.fetchRequest()
         let request = NSFetchRequest<Todo>(entityName: "Todo")
-        request.sortDescriptors = [NSSortDescriptor(key: "priority", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         guard let tasks = try? AppDelegate.viewContext.fetch(request) else {
             return []
         }
@@ -26,4 +26,6 @@ public class Todo: NSManagedObject {
         Todo.fetchAll(viewContext: viewContext).forEach({ viewContext.delete($0) })
         try? viewContext.save()
     }
+    
+    static var entityName: String { return "Todo" }
 }

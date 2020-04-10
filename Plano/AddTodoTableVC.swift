@@ -10,26 +10,11 @@ import UIKit
 import CloudKit
 import CoreData
 
-protocol NotifyReloadArray {
-    func notifyDelegate()
-}
-
-protocol AddTodoTableVCDelegate {
-    func controller(controller: AddTodoTableVC, didAddList list: CKRecord)
-    func controller(controller: AddTodoTableVC, didUpdateList list: CKRecord)
-}
-
 class AddTodoTableVC: UITableViewController {
-
-    var dataSource = [AddTodoItemSection]()
-    var todoTableVC = TodoTableVC()
-    var delegate: AddTodoTableVCDelegate?
-    var newTodo: Bool = true
-    //var todo: CKRecord?
     var indicator: UIActivityIndicatorView!
-    
-    var managedObjectContext: NSManagedObjectContext!
+    var managedObjectContext = AppDelegate.viewContext
     var todo: Todo!
+    var subTodo = SubTodoTableVC()
     
     @IBOutlet weak var boardLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
@@ -47,8 +32,12 @@ class AddTodoTableVC: UITableViewController {
         indicator.startAnimating()
         indicator.backgroundColor = .white
         
-        if todo == nil {
-            todo = NSEntityDescription.insertNewObject(forEntityName: "Todo", into: AppDelegate.viewContext) as? Todo
+//        if todo == nil {
+//            todo = (NSEntityDescription.insertNewObject(forEntityName: Todo.entityName, into: managedObjectContext) as? Todo)
+//        }
+        
+        if todo.value(forKey: "title") == nil {
+            todo.setValue(titleTextField.text, forKey: "title")
         }
         
         todo.title = titleTextField.text
@@ -58,12 +47,12 @@ class AddTodoTableVC: UITableViewController {
         //self.blogIdea.ideaDescription = self.descriptionTextField.text
         
         do {
-            try AppDelegate.viewContext.save()
+            try managedObjectContext.save()
             
             indicator.stopAnimating()
             indicator.hidesWhenStopped = true
             
-            _ = self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.dismiss(animated: true, completion: nil)
         } catch {
             let alert = UIAlertController(title: "Trouble Saving",
                                           message: "Something went wrong when trying to save the Todo.  Please try again...",
@@ -71,18 +60,16 @@ class AddTodoTableVC: UITableViewController {
             let okAction = UIAlertAction(title: "OK",
                                          style: .default,
                                          handler: {(action: UIAlertAction) -> Void in
-                                            AppDelegate.viewContext.rollback()
-                                            self.todo = NSEntityDescription.insertNewObject(forEntityName: "Todo", into: AppDelegate.viewContext) as? Todo
+                                            self.managedObjectContext.rollback()
+                                            self.todo = NSEntityDescription.insertNewObject(forEntityName: Todo.entityName, into: self.managedObjectContext) as? Todo
                                             
             })
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
-            
             indicator.stopAnimating()
             indicator.hidesWhenStopped = true
+            
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
         }
-        
-        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -109,6 +96,7 @@ class AddTodoTableVC: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         tableView.reloadData()
+        //titleTextField.text = subTodo.navigationItem.title
         boardLabel.text = selectedBoard[0]
         priorityLabel.text = selectedPriority[0]
         reminderLabel.text = selectedReminder[0]
@@ -120,10 +108,10 @@ class AddTodoTableVC: UITableViewController {
     func setUIValues() {
         guard let todo = self.todo else { return }
         
-        titleTextField.text = todo.title
-//        boardLabel.text = todo.board
-//        priorityLabel.text = "\(todo.priority)"
-//        reminderLabel.text = todo.reminder
+        titleTextField.placeholder = todo.title
+        boardLabel.text = todo.board
+        priorityLabel.text = "\(todo.priority)"
+        reminderLabel.text = todo.reminder
         //self.descriptionTextField.text = blogIdea.ideaDescription
     }
     
@@ -321,14 +309,13 @@ class AddTodoTableVC: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        managedObjectContext.rollback()
     }
-    */
 
 }

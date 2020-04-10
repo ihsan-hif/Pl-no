@@ -13,6 +13,7 @@ import CoreData
 
 class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    var managedObjectContext = AppDelegate.viewContext
     var fetchedResultsController: NSFetchedResultsController<Todo>!
     var indicator: UIActivityIndicatorView!
     
@@ -77,12 +78,12 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     // MARK: Fetched Results Controller Configuration
     func configureFetchedResultsController() {
         let todoFetchRequest = NSFetchRequest<Todo>(entityName: "Todo")
-        let primarySortDescriptor = NSSortDescriptor(key: "priority", ascending: true)
+        let primarySortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         todoFetchRequest.sortDescriptors = [primarySortDescriptor]
 
         self.fetchedResultsController = NSFetchedResultsController<Todo>(
             fetchRequest: todoFetchRequest,
-            managedObjectContext: AppDelegate.viewContext,
+            managedObjectContext: managedObjectContext,
             sectionNameKeyPath: nil,
             cacheName: nil)
 
@@ -121,6 +122,10 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 
@@ -174,12 +179,12 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) {
             (_) -> Void in
             
-            AppDelegate.viewContext.delete(self.todoToDelete!)
+            self.managedObjectContext.delete(self.todoToDelete!)
             
             do {
-                try AppDelegate.viewContext.save()
+                try self.managedObjectContext.save()
             } catch {
-                AppDelegate.viewContext.rollback()
+                self.managedObjectContext.rollback()
                 print("Something went wrong: \(error)")
             }
         }
@@ -257,14 +262,19 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
         }
     }
 
-    /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destination.
+    // Pass the selected object to the new view controller.
+       guard let subTodoTableVC = segue.destination as? SubTodoTableVC else { return }
+        subTodoTableVC.managedObjectContext = self.managedObjectContext
+
+       if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
+           let selectedTodo = self.fetchedResultsController.object(at: selectedIndexPath)
+           subTodoTableVC.todo = selectedTodo
+       }
     }
-    */
 
 }

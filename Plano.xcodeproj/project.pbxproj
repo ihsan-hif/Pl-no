@@ -31,6 +31,8 @@
 		2CC2C331243F1ADD0025BBF6 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C330243F1ADD0025BBF6 /* ReminderCell.swift */; };
 		2CC2C333243F20B60025BBF6 /* TempDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C332243F20B60025BBF6 /* TempDatabase.swift */; };
 		2CC2C33F244032780025BBF6 /* TodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C33E244032780025BBF6 /* TodoCell.swift */; };
+		2CC2C3412440CFCC0025BBF6 /* SubTodoTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C3402440CFCC0025BBF6 /* SubTodoTableVC.swift */; };
+		2CC2C3432440CFF40025BBF6 /* SubTodoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC2C3422440CFF40025BBF6 /* SubTodoCell.swift */; };
 		2F02A8F3243B8709000D9898 /* Todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F2243B8709000D9898 /* Todo.storyboard */; };
 		2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F4243B871B000D9898 /* Schedule.storyboard */; };
 		2F02A8F7243B8733000D9898 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F6243B8733000D9898 /* Profile.storyboard */; };
@@ -73,6 +75,8 @@
 		2CC2C330243F1ADD0025BBF6 /* ReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		2CC2C332243F20B60025BBF6 /* TempDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempDatabase.swift; sourceTree = "<group>"; };
 		2CC2C33E244032780025BBF6 /* TodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCell.swift; sourceTree = "<group>"; };
+		2CC2C3402440CFCC0025BBF6 /* SubTodoTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SubTodoTableVC.swift; path = "Plano/Todo/Table View Cell/SubTodoTableVC.swift"; sourceTree = SOURCE_ROOT; };
+		2CC2C3422440CFF40025BBF6 /* SubTodoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTodoCell.swift; sourceTree = "<group>"; };
 		2F02A8F2243B8709000D9898 /* Todo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Todo.storyboard; sourceTree = "<group>"; };
 		2F02A8F4243B871B000D9898 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		2F02A8F6243B8733000D9898 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				2CC2C33E244032780025BBF6 /* TodoCell.swift */,
+				2CC2C3422440CFF40025BBF6 /* SubTodoCell.swift */,
 				2CC2C31E243F0A7F0025BBF6 /* AddTodoCell.swift */,
 				2CC2C31C243F0A640025BBF6 /* TitleCell.swift */,
 				2CC2C32A243F1AB70025BBF6 /* BoardCell.swift */,
@@ -237,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				2C1C43ED243C18DB007E75A8 /* TodoTableVC.swift */,
+				2CC2C3402440CFCC0025BBF6 /* SubTodoTableVC.swift */,
 				2C1C43F3243C2296007E75A8 /* AddTodoTableVC.swift */,
 				2CC2C322243F1A0A0025BBF6 /* BoardTableVC.swift */,
 				2CC2C324243F1A1A0025BBF6 /* PriorityTableVC.swift */,
@@ -424,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CC2C32F243F1AD30025BBF6 /* DateAndTimeCell.swift in Sources */,
+				2CC2C3432440CFF40025BBF6 /* SubTodoCell.swift in Sources */,
 				2CC2C327243F1A2F0025BBF6 /* DateAndTimeTableVC.swift in Sources */,
 				2C1C43EC243B743B007E75A8 /* ScheduleVC.swift in Sources */,
 				2C66864C243C324300F3DD52 /* KeychainItem.swift in Sources */,
@@ -437,6 +444,7 @@
 				2CC2C331243F1ADD0025BBF6 /* ReminderCell.swift in Sources */,
 				2C1C43F4243C2296007E75A8 /* AddTodoTableVC.swift in Sources */,
 				2CC2C31F243F0A7F0025BBF6 /* AddTodoCell.swift in Sources */,
+				2CC2C3412440CFCC0025BBF6 /* SubTodoTableVC.swift in Sources */,
 				2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */,
 				2C668660243ECC3B00F3DD52 /* Model.swift in Sources */,
 				2CC2C31D243F0A640025BBF6 /* TitleCell.swift in Sources */,

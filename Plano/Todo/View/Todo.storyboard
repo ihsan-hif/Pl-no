@@ -62,6 +62,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="titleLabel" destination="HBh-4m-2jk" id="VcP-Jg-1Ds"/>
+                                    <segue destination="Org-7r-SZF" kind="show" id="Sy0-PV-OCW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -376,6 +377,41 @@
             </objects>
             <point key="canvasLocation" x="3902.898550724638" y="-1079.4642857142856"/>
         </scene>
+        <!--Sub Todo TableVC-->
+        <scene sceneID="FBy-1r-0pI">
+            <objects>
+                <tableViewController id="Org-7r-SZF" customClass="SubTodoTableVC" customModule="Plano" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qtF-rS-va9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="subTodoCell" id="vSt-7q-as5" customClass="SubTodoCell" customModule="Plano" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vSt-7q-as5" id="XMG-qz-GMZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Org-7r-SZF" id="BAg-lg-cQD"/>
+                            <outlet property="delegate" destination="Org-7r-SZF" id="Okj-Hx-eBd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wPq-Ue-wQz">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="8bw-Hp-5Tu">
+                            <connections>
+                                <segue destination="vAo-4D-TrQ" kind="presentation" id="gSM-95-sOf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sUH-bO-NlD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1941" y="-731"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ykp-cg-emN">
             <objects>
@@ -504,6 +540,9 @@
             <point key="canvasLocation" x="3902.898550724638" y="-373.66071428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VfW-hS-lV1"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="square.and.pencil" catalog="system" width="128" height="118"/>
     </resources>
