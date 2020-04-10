@@ -32,9 +32,9 @@ class AddTodoTableVC: UITableViewController {
         indicator.startAnimating()
         indicator.backgroundColor = .white
         
-//        if todo == nil {
-//            todo = (NSEntityDescription.insertNewObject(forEntityName: Todo.entityName, into: managedObjectContext) as? Todo)
-//        }
+        if todo == nil {
+            todo = (NSEntityDescription.insertNewObject(forEntityName: Todo.entityName, into: managedObjectContext) as? Todo)
+        }
         
         if todo.value(forKey: "title") == nil {
             todo.setValue(titleTextField.text, forKey: "title")
