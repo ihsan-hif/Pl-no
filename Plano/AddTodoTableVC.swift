@@ -10,11 +10,14 @@ import UIKit
 import CloudKit
 import CoreData
 
-class AddTodoTableVC: UITableViewController {
+class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
     var indicator: UIActivityIndicatorView!
     var managedObjectContext = AppDelegate.viewContext
     var todo: Todo!
     var subTodo = SubTodoTableVC()
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    var datePickerVisible: Bool = false
     
     @IBOutlet weak var boardLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
@@ -72,6 +75,10 @@ class AddTodoTableVC: UITableViewController {
         }
     }
     
+    @IBAction func dateChanged(_ sender: UIDatePicker) {
+        dateAndTimeLabel.text = "\(datePicker.date)"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,6 +96,10 @@ class AddTodoTableVC: UITableViewController {
 //        // Add Observer
 //        let notificationCenter = NotificationCenter.default
 //        notificationCenter.addObserver(self, selector: #selector(AddTodoTableVC.textFieldTextDidChange(notification:)), name: UITextField.textDidChangeNotification, object: titleTextField)
+        
+        datePickerVisible = false
+        datePicker.isHidden = true
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
         
         setUIValues()
     }
@@ -128,6 +139,8 @@ class AddTodoTableVC: UITableViewController {
         indicator.center = self.view.center
         self.view.addSubview(indicator)
     }
+    
+    
     
 //    private func updateTitleTextField() {
 //        if let title = todo?.object(forKey: "title") as? String {
@@ -225,18 +238,18 @@ class AddTodoTableVC: UITableViewController {
         return 3
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if section == 0 {
-            return 1
-        }
-        else if section == 1 {
-            return 2
-        }
-        else {
-            return 2
-        }
-    }
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        // #warning Incomplete implementation, return the number of rows
+//        if section == 0 {
+//            return 1
+//        }
+//        else if section == 1 {
+//            return 2
+//        }
+//        else {
+//            return 3
+//        }
+//    }
 
     
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -270,9 +283,26 @@ class AddTodoTableVC: UITableViewController {
 //    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        var height = tableView.rowHeight
+        if indexPath.section == 3 && indexPath.row == 2 {
+            height = self.datePickerVisible ? 216.0 : 0.0
+            return height
+        }
+        
+        return height
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+
+        if indexPath.section == 3 && indexPath.row == 1 {
+            if datePickerVisible {
+                hideStatusPickerCell()
+            } else {
+                showStatusPickerCell()
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -308,6 +338,31 @@ class AddTodoTableVC: UITableViewController {
         return true
     }
     */
+    
+    
+    func showStatusPickerCell() {
+        datePickerVisible = true
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        datePicker.alpha = 0.0
+        UIView.animate(withDuration: 0.25, animations: {
+            self.datePicker.alpha = 1.0
+        }) { finished in
+            self.datePicker.isHidden = false
+        }
+    }
+
+    func hideStatusPickerCell() {
+        datePickerVisible = false
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.datePicker.alpha = 0.0
+        }) { finished in
+            self.datePicker.isHidden = true
+        }
+    }
+    
 
     // MARK: - Navigation
 
