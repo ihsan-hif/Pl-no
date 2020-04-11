@@ -15,10 +15,9 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
     var managedObjectContext = AppDelegate.viewContext
     var todo: Todo!
     var subTodo = SubTodoTableVC()
+    var dateFormatter = DateFormatter()
     
     @IBOutlet weak var datePicker: UIDatePicker!
-    var datePickerVisible: Bool = false
-    
     @IBOutlet weak var boardLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
@@ -46,6 +45,7 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
         todo.title = titleTextField.text
         todo.board = selectedBoard[0]
         todo.priority = Int64(selectedPriorityInt[0])
+        todo.dateAndTime = dateFormatter.date(from: dateAndTimeLabel.text!)
         todo.reminder = selectedReminder[0]
         //self.blogIdea.ideaDescription = self.descriptionTextField.text
         
@@ -76,7 +76,10 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func dateChanged(_ sender: UIDatePicker) {
-        dateAndTimeLabel.text = "\(datePicker.date)"
+        dateFormatter.locale = Locale(identifier: "en_ID")
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
+        dateAndTimeLabel.text = "\(dateFormatter.string(from: datePicker.date))"
     }
     
     override func viewDidLoad() {
@@ -97,9 +100,12 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
 //        let notificationCenter = NotificationCenter.default
 //        notificationCenter.addObserver(self, selector: #selector(AddTodoTableVC.textFieldTextDidChange(notification:)), name: UITextField.textDidChangeNotification, object: titleTextField)
         
-        datePickerVisible = false
+        datePicker.date = Date()
+        dateFormatter.locale = Locale(identifier: "en_ID")
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
+        dateAndTimeLabel.text = "\(dateFormatter.string(from: datePicker.date))"
         datePicker.isHidden = true
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
         
         setUIValues()
     }
@@ -139,7 +145,6 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
         indicator.center = self.view.center
         self.view.addSubview(indicator)
     }
-    
     
     
 //    private func updateTitleTextField() {
@@ -233,10 +238,10 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
-    }
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        // #warning Incomplete implementation, return the number of sections
+//        return 3
+//    }
 
 //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        // #warning Incomplete implementation, return the number of rows
@@ -283,25 +288,39 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
 //    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = tableView.rowHeight
-        if indexPath.section == 3 && indexPath.row == 2 {
-            height = self.datePickerVisible ? 216.0 : 0.0
+        if indexPath.row == 1 && indexPath.section == 2 {
+            let height:CGFloat = datePicker.isHidden ? 0.0 : 216.0
             return height
         }
-        
-        return height
+
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dateIndexPath = IndexPath(row: 0, section: 2)
+        if dateIndexPath == indexPath {
+            
+            if datePicker.isHidden == true {
+                datePicker.isHidden = false
 
-        if indexPath.section == 3 && indexPath.row == 1 {
-            if datePickerVisible {
-                hideStatusPickerCell()
-            } else {
-                showStatusPickerCell()
+                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                    self.tableView.beginUpdates()
+                    // apple bug fix - some TV lines hide after animation
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                    self.tableView.endUpdates()
+                })
+            }
+            else {
+                datePicker.isHidden = true
+                
+                UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                    self.tableView.beginUpdates()
+                    // apple bug fix - some TV lines hide after animation
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                    self.tableView.endUpdates()
+                })
             }
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*
@@ -338,30 +357,6 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
         return true
     }
     */
-    
-    
-    func showStatusPickerCell() {
-        datePickerVisible = true
-        tableView.beginUpdates()
-        tableView.endUpdates()
-        datePicker.alpha = 0.0
-        UIView.animate(withDuration: 0.25, animations: {
-            self.datePicker.alpha = 1.0
-        }) { finished in
-            self.datePicker.isHidden = false
-        }
-    }
-
-    func hideStatusPickerCell() {
-        datePickerVisible = false
-        tableView.beginUpdates()
-        tableView.endUpdates()
-        UIView.animate(withDuration: 0.25, animations: {
-            self.datePicker.alpha = 0.0
-        }) { finished in
-            self.datePicker.isHidden = true
-        }
-    }
     
 
     // MARK: - Navigation

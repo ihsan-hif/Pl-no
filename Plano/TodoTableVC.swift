@@ -78,8 +78,9 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     // MARK: Fetched Results Controller Configuration
     func configureFetchedResultsController() {
         let todoFetchRequest = NSFetchRequest<Todo>(entityName: "Todo")
-        let primarySortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        todoFetchRequest.sortDescriptors = [primarySortDescriptor]
+        let primarySortDescriptor = NSSortDescriptor(key: "dateAndTime", ascending: true)
+        let secondarySortDescriptor = NSSortDescriptor(key: "priority", ascending: false)
+        todoFetchRequest.sortDescriptors = [primarySortDescriptor, secondarySortDescriptor]
 
         self.fetchedResultsController = NSFetchedResultsController<Todo>(
             fetchRequest: todoFetchRequest,
@@ -112,9 +113,23 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! TodoCell
         let todo = fetchedResultsController.object(at: indexPath)
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_ID")
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
 
         // Configure the cell...
         cell.titleLabel.text = todo.title
+        cell.dateAndTimeLabel.text = "\(dateFormatter.string(from: todo.dateAndTime!))"
+        if todo.priority == 0 {
+            cell.priorityLabel.text = "Low"
+        }
+        else if todo.priority == 1 {
+            cell.priorityLabel.text = "Medium"
+        }
+        else {
+            cell.priorityLabel.text = "High"
+        }
 
         return cell
     }

@@ -12,7 +12,7 @@ class PriorityTableVC: UITableViewController {
     
     var priorityItem = ["Low", "Medium", "High"]
     var priorityItemInt = [0, 1, 2]
-    var selectedIndexes = [[IndexPath.init(row: 0, section: 0)], [IndexPath.init(row: 0, section: 1)], [IndexPath.init(row: 0, section: 3)]]
+    var selectedIndexes = [[IndexPath.init(row: 0, section: 0)], [IndexPath.init(row: 0, section: 1)], [IndexPath.init(row: 0, section: 2)]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
