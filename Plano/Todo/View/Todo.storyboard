@@ -62,10 +62,15 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m5E-Dd-nG1">
+                                            <rect key="frame" x="283" y="11" width="44" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateAndTimeLabel" destination="g0N-E9-NpI" id="d2M-YD-JDw"/>
+                                    <outlet property="priorityImage" destination="m5E-Dd-nG1" id="D1R-v2-0bR"/>
                                     <outlet property="priorityLabel" destination="FTF-Dn-Qjw" id="hgR-mr-uCH"/>
                                     <outlet property="titleLabel" destination="fpT-Dy-Na1" id="B7I-27-bAC"/>
                                     <segue destination="Org-7r-SZF" kind="show" id="Sy0-PV-OCW"/>

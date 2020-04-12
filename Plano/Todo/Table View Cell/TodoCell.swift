@@ -13,7 +13,7 @@ class TodoCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
-    
+    @IBOutlet weak var priorityImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

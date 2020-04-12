@@ -123,12 +123,15 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
         cell.dateAndTimeLabel.text = "\(dateFormatter.string(from: todo.dateAndTime!))"
         if todo.priority == 0 {
             cell.priorityLabel.text = "Low"
+            cell.priorityImage.image = UIImage(named: "Low")
         }
         else if todo.priority == 1 {
             cell.priorityLabel.text = "Medium"
+            cell.priorityImage.image = UIImage(named: "Medium")
         }
         else {
             cell.priorityLabel.text = "High"
+            cell.priorityImage.image = UIImage(named: "High")
         }
 
         return cell
