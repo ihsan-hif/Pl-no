@@ -33,9 +33,9 @@ final class ScheduleVC: UIViewController {
     private var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-//        let date = Date()
+        let currentDate = Date()
 //        return date
-        return formatter.date(from: "14.12.2018") ?? Date()
+        return formatter.date(from: "\(currentDate)") ?? Date()
     }()
     
     func dateToString(date: Date) -> String {

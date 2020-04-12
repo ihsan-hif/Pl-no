@@ -153,6 +153,19 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
         
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).contentView.backgroundColor = UIColor.white
+        (view as! UITableViewHeaderFooterView).textLabel?.textColor = UIColor.black
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! TodoCell
         let todo = fetchedResultsController.object(at: indexPath)
@@ -161,18 +174,21 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
 
         // Configure the cell...
+        cell.todoCellView.backgroundColor = .systemGroupedBackground
+        cell.todoCellView.cornerRadius = 10
+        cell.todoCellView.shadowColor = .black
+        cell.todoCellView.shadowOffset = CGSize(width: 0, height: 0)
+        cell.todoCellView.shadowRadius = 2
+        cell.todoCellView.shadowOpacity = 0.3
         cell.titleLabel.text = todo.title
         cell.dateAndTimeLabel.text = "\(dateFormatter.string(from: todo.dateAndTime!))"
         if todo.priority == 0 {
-            cell.priorityLabel.text = "Low"
             cell.priorityImage.image = UIImage(named: "Low")
         }
         else if todo.priority == 1 {
-            cell.priorityLabel.text = "Medium"
             cell.priorityImage.image = UIImage(named: "Medium")
         }
         else {
-            cell.priorityLabel.text = "High"
             cell.priorityImage.image = UIImage(named: "High")
         }
 
@@ -180,7 +196,7 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 77
         
     }
     

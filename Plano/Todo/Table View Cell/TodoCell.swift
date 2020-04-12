@@ -10,6 +10,7 @@ import UIKit
 
 class TodoCell: UITableViewCell {
 
+    @IBOutlet weak var todoCellView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
