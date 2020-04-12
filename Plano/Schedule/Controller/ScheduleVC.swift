@@ -6,21 +6,43 @@
 //  Copyright © 2020 Mini Challenge 1 - Group 7. All rights reserved.
 //
 
+
+struct newEvent {
+    var all_day : Bool
+    var border_color : String
+    var color : String
+    var end : Date
+    var id: Int
+    var start : Date
+    var text_color : String
+    var title : String
+    }
+
+
 import UIKit
 import KVKCalendar
 
 final class ScheduleVC: UIViewController {
     
+    
+    
     @IBOutlet weak var taskTable: UITableView!
     private var events = [Event]()
+    private var dataCell = [newEvent]()
     
     private var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
-        let date = Date()
+//        let date = Date()
 //        return date
         return formatter.date(from: "14.12.2018") ?? Date()
     }()
+    
+    func dateToString(date: Date) -> String {
+        let formatter = DateFormatter()
+        return formatter.string(from: date)
+    }
+    
     
     private lazy var todayButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Today", style: .done, target: self, action: #selector(today))
@@ -113,6 +135,8 @@ final class ScheduleVC: UIViewController {
         self.taskTable.delegate = self
         self.taskTable.dataSource = self
         
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -153,7 +177,7 @@ extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell")
-        cell?.textLabel!.text="tes123"
+//        cell?.textLabel?.text =
         return cell!
     }
     
@@ -184,8 +208,20 @@ extension ScheduleVC: CalendarDelegate {
     }
     
     func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
+        var taskEvent = [dataCell]
         selectDate = date ?? Date()
         calendarView.reloadData()
+        for i in dataCell.enumerated()
+        {
+            var newDate = formatter
+            print(i.element.start)
+            print(selectDate)
+            if i.element.start == selectDate
+            {
+                print("sfadsaaad")
+            }
+        }
+        taskTable.reloadData()
     }
     
     func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
@@ -218,34 +254,40 @@ extension ScheduleVC {
         var events = [Event]()
         let decoder = JSONDecoder()
                 
+        
+        
         guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
             let data = try? Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe),
             let result = try? decoder.decode(ItemData.self, from: data) else { return }
-
-        for (idx, item) in result.data.enumerated() {
-            let startDate = self.formatter(date: item.start)
-            let endDate = self.formatter(date: item.end)
-            let startTime = self.timeFormatter(date: startDate)
-            let endTime = self.timeFormatter(date: endDate)
-
+        dataCell.append(newEvent(all_day: false, border_color: "#FFFFFF", color: "#93c47d", end: formatter(date: "2018-12-10T16:30:00+03:00"), id: 1, start: formatter(date: "2018-12-12T16:00:00+03:00"), text_color: "000000", title: "Event Test 1"))
+        
+        print(dataCell.enumerated())
+        
+        
+        for (idx, item) in dataCell.enumerated() {
+            let startDate = item.start
+            let endDate = item.end
+//            let startTime = self.timeFormatter(date: startDate)
+//            let endTime = self.timeFormatter(date: endDate)
+            let color = UIColor.hexStringToColor(hex: item.color)
             var event = Event()
             event.id = idx
             event.start = startDate
             event.end = endDate
-            event.color = EventColor(item.color)
-            event.isAllDay = item.allDay
-            event.isContainsFile = !item.files.isEmpty
+            event.color = EventColor(color)
+            event.isAllDay = item.all_day
+//            event.isContainsFile = !item.files.isEmpty
             event.textForMonth = item.title
-
-            if item.allDay {
-                event.text = "\(item.title)"
-            } else {
-                event.text = "\(startTime) - \(endTime)\n\(item.title)"
-            }
+            event.text = "\(item.title)"
+//            if item.all_day {
+//                event.text = "\(item.title)"
+//            } else {
+//                event.text = "\(startTime) - \(endTime)\n\(item.title)"
+//            }
             events.append(event)
             
         }
-        print(events[0])
+//        print(result)
         completion(events)
     }
     
@@ -260,6 +302,8 @@ extension ScheduleVC {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         return formatter.date(from: date) ?? Date()
     }
+    
+    
 }
 
 extension ScheduleVC: UIPopoverPresentationControllerDelegate {

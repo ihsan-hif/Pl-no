@@ -11,7 +11,7 @@ import UIKit
 class PriorityCell: UITableViewCell {
 
     @IBOutlet weak var priorityLabel: UILabel!
-    
+    @IBOutlet weak var priorityImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
