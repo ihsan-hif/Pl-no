@@ -20,6 +20,7 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var boardLabel: UILabel!
     @IBOutlet weak var priorityLabel: UILabel!
+    @IBOutlet weak var priorityImageView: UIImageView!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
@@ -77,7 +78,7 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
     
     @IBAction func dateChanged(_ sender: UIDatePicker) {
         dateFormatter.locale = Locale(identifier: "en_ID")
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
         dateAndTimeLabel.text = "\(dateFormatter.string(from: datePicker.date))"
     }
@@ -101,8 +102,9 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
 //        notificationCenter.addObserver(self, selector: #selector(AddTodoTableVC.textFieldTextDidChange(notification:)), name: UITextField.textDidChangeNotification, object: titleTextField)
         
         datePicker.date = Date()
+        datePicker.datePickerMode = .date
         dateFormatter.locale = Locale(identifier: "en_ID")
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
         dateAndTimeLabel.text = "\(dateFormatter.string(from: datePicker.date))"
         datePicker.isHidden = true
@@ -117,6 +119,16 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
         boardLabel.text = selectedBoard[0]
         priorityLabel.text = selectedPriority[0]
         reminderLabel.text = selectedReminder[0]
+        
+        if selectedPriorityInt == [0] {
+            priorityImageView.image = UIImage(named: "Low")
+        }
+        else if selectedPriorityInt == [1] {
+            priorityImageView.image = UIImage(named: "Medium")
+        }
+        else {
+            priorityImageView.image = UIImage(named: "High")
+        }
     }
     
     

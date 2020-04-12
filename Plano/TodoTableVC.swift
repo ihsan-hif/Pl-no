@@ -16,6 +16,7 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     var managedObjectContext = AppDelegate.viewContext
     var fetchedResultsController: NSFetchedResultsController<Todo>!
     var indicator: UIActivityIndicatorView!
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +86,7 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
         self.fetchedResultsController = NSFetchedResultsController<Todo>(
             fetchRequest: todoFetchRequest,
             managedObjectContext: managedObjectContext,
-            sectionNameKeyPath: nil,
+            sectionNameKeyPath: "dateAndTime",
             cacheName: nil)
 
         self.fetchedResultsController.delegate = self
@@ -97,7 +98,11 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,16 +111,53 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
             let currentSection = sections[section]
             return currentSection.numberOfObjects
         }
+        
         return 0
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if let numberOfObjects = fetchedResultsController.fetchedObjects?[section] {
+//
+//            let dateFormatter = DateFormatter()
+//            dateFormatter.locale = Locale(identifier: "en_ID")
+//            dateFormatter.dateFormat = "MMM d, yyyy" // Date format for todoDate
+//            dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
+//            let todoDate = dateFormatter.date(from: "\(numberOfObjects.dateAndTime!)")
+//            let currentDate = Date()
+//            let result = Calendar.current.compare(currentDate, to: todoDate!, toGranularity: .day)
+//            let tomorrowDate = currentDate.addingTimeInterval(60 * 60 * 24)
+//            let result1 = Calendar.current.compare(tomorrowDate, to: todoDate!, toGranularity: .day)
+//
+//            if result == ComparisonResult.orderedSame {
+//                return "Today"
+//            }
+//            if result1 == ComparisonResult.orderedSame {
+//                return "Tomorrow"
+//            }
+//            let dateFormatter1 = DateFormatter()
+//            dateFormatter1.dateFormat = "dd MMMM, yyyy"
+//
+//            return dateFormatter1.string(from: todoDate!)
+//        }
+//
+//        return nil
+        
+        dateFormatter.locale = Locale(identifier: "en_ID")
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
 
+        guard let sectionInfo = fetchedResultsController?.fetchedObjects?[section] else {
+            return nil
+        }
+        return "\(dateFormatter.string(from: sectionInfo.dateAndTime!))"
+        
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! TodoCell
         let todo = fetchedResultsController.object(at: indexPath)
-        let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_ID")
-        dateFormatter.dateFormat = "MMM d, h:mm a"
+        dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
 
         // Configure the cell...
