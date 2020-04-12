@@ -17,7 +17,6 @@ class OnboardVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupProviderLoginView()
-        customWelcomeLabel()
     }
         
     override func viewDidAppear(_ animated: Bool) {
