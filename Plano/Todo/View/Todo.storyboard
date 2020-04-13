@@ -82,7 +82,7 @@
                                     <outlet property="checkboxButtonOutlet" destination="JbY-6L-Zj3" id="kv2-Ne-Fap"/>
                                     <outlet property="dateAndTimeLabel" destination="3eJ-SB-RhD" id="aNJ-qh-9uj"/>
                                     <outlet property="priorityImage" destination="X9f-NA-aiw" id="JaC-gh-0FQ"/>
-                                    <outlet property="titleLabel" destination="b2c-XN-Zfk" id="YMl-9g-eBD"/>
+                                    <outlet property="titleLabel" destination="b2c-XN-Zfk" id="380-iO-6qu"/>
                                     <outlet property="todoCellView" destination="Esh-F7-cZV" id="eSg-ua-6Ee"/>
                                     <segue destination="Org-7r-SZF" kind="show" id="6c9-8d-tqI"/>
                                 </connections>

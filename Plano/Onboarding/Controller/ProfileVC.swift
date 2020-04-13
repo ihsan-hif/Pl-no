@@ -12,35 +12,27 @@ import AuthenticationServices
 class ProfileVC: UIViewController {
 
     @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var signInSignOutButtonOutlet: UIButton!
     @IBOutlet weak var signInSignOutLabelOutlet: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        profileName.text = KeychainItem.currentUserGivenName! + " " + KeychainItem.currentUserBirthName! 
-        //profileName.text = "Your Name"
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier ?? "") { (credentialState, error) in
-            switch credentialState {
-            case .authorized:
-                DispatchQueue.main.async {
-                    self.signInSignOutLabelOutlet.text = "Sign Out"
-                    self.signInSignOutLabelOutlet.textColor = .systemRed
-                }
-            case .revoked, .notFound:
-                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
-                DispatchQueue.main.async {
-                    self.signInSignOutLabelOutlet.text = "Sign In"
-                    self.signInSignOutLabelOutlet.textColor = .systemBlue
-                }
-            default:
-                break
-            }
+        if KeychainItem.currentUserIdentifier != nil {
+            profileName.text = KeychainItem.currentUserGivenName ?? "Your Name"
+            signInSignOutButtonOutlet.isHidden = true
+            signInSignOutLabelOutlet.isHidden = true
+        }
+        else {
+            profileName.text = "Your Name"
+            self.signInSignOutLabelOutlet.text = "Sign In"
+            self.signInSignOutLabelOutlet.textColor = .systemBlue
         }
     }
     
@@ -53,7 +45,10 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func signInSignOutButtonAction(_ sender: UIButton) {
-        KeychainItem.deleteUserIdentifierFromKeychain()
+        KeychainItem.currentUserIdentifier = nil
+        KeychainItem.currentUserGivenName = nil
+        KeychainItem.currentUserBirthName = nil
+        KeychainItem.currentUserEmail = nil
         // Display the login controller again.
         DispatchQueue.main.async {
             self.showLoginViewController()

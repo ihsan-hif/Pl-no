@@ -413,7 +413,7 @@ enum ColorCompatibility {
 }
 
 enum ActionDescriptor {
-    case read, unread, more, flag, trash, done
+    case read, unread, more, flag, trash, done, undone
     
     func title(forDisplayMode displayMode: ButtonDisplayMode) -> String? {
         guard displayMode != .imageOnly else { return nil }
@@ -425,6 +425,7 @@ enum ActionDescriptor {
         case .flag: return "Flag"
         case .trash: return "Delete"
         case .done: return "Done"
+        case .undone: return "Undone"
         }
     }
     
@@ -439,6 +440,7 @@ enum ActionDescriptor {
         case .flag: name = "Flag"
         case .trash: name = "Delete"
         case .done: name = "Done"
+        case .undone: name = "Undone"
         }
         
     #if canImport(Combine)
@@ -451,6 +453,7 @@ enum ActionDescriptor {
             case .flag: name = "flag.fill"
             case .trash: name = "trash.fill"
             case .done: name = "checkmark.circle.fill"
+            case .undone: name = "checkmark.circle"
             }
             
             if style == .backgroundColor {
@@ -472,7 +475,7 @@ enum ActionDescriptor {
     func color(forStyle style: ButtonStyle) -> UIColor {
     #if canImport(Combine)
         switch self {
-        case .read, .unread, .done: return UIColor.systemBlue
+        case .read, .unread, .done, .undone: return UIColor.systemBlue
         case .more:
             if #available(iOS 13.0, *) {
                 if UITraitCollection.current.userInterfaceStyle == .dark {
@@ -487,7 +490,7 @@ enum ActionDescriptor {
         }
     #else
         switch self {
-        case .read, .unread: return #colorLiteral(red: 0, green: 0.4577052593, blue: 1, alpha: 1)
+        case .read, .unread, .done, .undone: return #colorLiteral(red: 0, green: 0.4577052593, blue: 1, alpha: 1)
         case .more: return #colorLiteral(red: 0.7803494334, green: 0.7761332393, blue: 0.7967314124, alpha: 1)
         case .flag: return #colorLiteral(red: 1, green: 0.5803921569, blue: 0, alpha: 1)
         case .trash: return #colorLiteral(red: 1, green: 0.2352941176, blue: 0.1882352941, alpha: 1)

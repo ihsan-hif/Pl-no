@@ -39,6 +39,10 @@ class OnboardVC: UIViewController {
     // MARK: - IBAction
     
     @IBAction func skipButton(_ sender: UIButton) {
+        KeychainItem.currentUserIdentifier = nil
+        KeychainItem.currentUserGivenName = nil
+        KeychainItem.currentUserBirthName = nil
+        KeychainItem.currentUserEmail = nil
         self.dismiss(animated: true, completion: nil)
     }
     

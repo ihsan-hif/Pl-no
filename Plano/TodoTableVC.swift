@@ -239,6 +239,7 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate, Sw
         cell.todoCellView.cornerRadius = 10
         
         //cell.checkboxButtonOutlet.addTarget(self, action: #selector(self.checkBoxButtonAction(_:)), for: .touchUpInside)
+        
         cell.titleLabel.text = todo.title
         if todo.status == false {
             //cell.todoCellView.backgroundColor = .systemGroupedBackground
@@ -250,7 +251,6 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate, Sw
             cell.checkboxButtonOutlet.setImage(UIImage(named: "Checked"), for: .normal)
         }
         
-        //cell.titleLabel.text = todo.title
         cell.dateAndTimeLabel.text = "\(dateFormatter.string(from: todo.dateAndTime!))"
         if todo.priority == 0 {
             cell.priorityImage.image = UIImage(named: "Low")
@@ -296,10 +296,13 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate, Sw
 //    }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        let todo = self.fetchedResultsController.object(at: indexPath)
+        
         if orientation == .left {
             guard isSwipeRightEnabled else { return nil }
+            
             let status = SwipeAction(style: .default, title: nil) { action, indexPath in
-                let todo = self.fetchedResultsController.object(at: indexPath)
+                
 //                let updatedStatus = todo.status
 //                self.todoToUpdate?.status = updatedStatus
                 
@@ -325,14 +328,14 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate, Sw
                 }
             }
             status.hidesWhenSelected = true
-            configure(action: status, with: .done)
+            let descriptor: ActionDescriptor = todo.status ? .undone : .done
+            configure(action: status, with: descriptor)
             
             return [status]
         }
         else {
             let delete = SwipeAction(style: .destructive, title: nil) { action, indexPath in
                 // Delete the row from the data source
-                let todo = self.fetchedResultsController.object(at: indexPath)
                 self.confirmDeleteForTodo(todo)
             }
             configure(action: delete, with: .trash)
