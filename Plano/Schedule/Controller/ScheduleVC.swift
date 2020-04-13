@@ -32,13 +32,13 @@ final class ScheduleVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBOutlet weak var taskTable: UITableView!
     private var events = [Event]()
     private var dataCell = [newEvent]()
-    
+    var dataTableView : [Todo] = []
     private var selectDate: Date = {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let currentDate = Date()
-//        return date
-        return formatter.date(from: "\(currentDate)") ?? Date()
+        return currentDate
+//        return formatter.date(from: "\(currentDate)") ?? Date()
     }()
     
     func configureFetchedResultsController() {
@@ -214,7 +214,7 @@ extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
         dateFormatter.locale = Locale(identifier: "en_ID")
         dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
-        print(todo.title)
+//        print(todo.title)
         cell.textLabel?.text = todo.title
         return cell
     }
@@ -248,24 +248,29 @@ extension ScheduleVC: CalendarDelegate {
     }
     
     func didSelectDate(_ date: Date?, type: CalendarType, frame: CGRect?) {
-        var taskEvent = [dataCell]
         selectDate = date ?? Date()
         calendarView.reloadData()
-//        for i in dataCell.enumerated()
-//        {
+        dateFormatter.locale = Locale(identifier: "en_ID")
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
+        
+        print("\(curDate) asdasdasd")
+        for i in Todo.fetchAll()
+        {
 //            var newDate = formatter
-//            print(i.element.start)
-//            print(selectDate)
-//            if i.element.start == selectDate
-//            {
-//                print("sfadsaaad")
-//            }
-//        }
+            print(i.dateAndTime)
+            print(selectDate)
+            if i.dateAndTime == selectDate
+            {
+                dataTableView.append(i.`self`())
+            }
+        }
+//        print(dataTableView)
         taskTable.reloadData()
     }
     
     func didSelectEvent(_ event: Event, type: CalendarType, frame: CGRect?) {
-        print(type, event)
+//        print(type, event)
         switch type {
         case .day:
             eventViewer.text = event.text
@@ -305,11 +310,11 @@ extension ScheduleVC {
             print("An error occurred")
         }
         
-        let todo = fetchedResultsController.fetchedObjects!
+        let todo = Todo.fetchAll()
         
-        for i in todo{
-            print(i.title!)
-        }
+//        for i in todo{
+//            print(i.title!)
+//        }
         
         
         
@@ -332,7 +337,16 @@ extension ScheduleVC {
             event.id = idx
             event.start = startDate!
             event.end = endDate!
-            event.color = EventColor(#colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1))
+            if(item.priority==0)
+            {
+                event.color = EventColor(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
+            }else if(item.priority==1)
+            {
+                event.color = EventColor(#colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1))
+            }else
+            {
+                event.color = EventColor(#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))
+            }
             event.isAllDay = true
 //            event.isContainsFile = !item.files.isEmpty
             event.textForMonth = item.title!
