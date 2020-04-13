@@ -21,10 +21,13 @@ struct newEvent {
 
 import UIKit
 import KVKCalendar
-
-final class ScheduleVC: UIViewController {
+import CloudKit
+import CoreData
+final class ScheduleVC: UIViewController, NSFetchedResultsControllerDelegate {
     
-    
+    let dateFormatter = DateFormatter()
+    var managedObjectContext = AppDelegate.viewContext
+    var fetchedResultsController: NSFetchedResultsController<Todo>!
     
     @IBOutlet weak var taskTable: UITableView!
     private var events = [Event]()
@@ -37,6 +40,24 @@ final class ScheduleVC: UIViewController {
 //        return date
         return formatter.date(from: "\(currentDate)") ?? Date()
     }()
+    
+    func configureFetchedResultsController() {
+        let todoFetchRequest = NSFetchRequest<Todo>(entityName: "Todo")
+        let primarySortDescriptor = NSSortDescriptor(key: "dateAndTime", ascending: true)
+        //let secondarySortDescriptor = NSSortDescriptor(key: "status", ascending: true)
+        let tertiarySortDescriptor = NSSortDescriptor(key: "priority", ascending: false)
+        //let quaternarySortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        todoFetchRequest.sortDescriptors = [primarySortDescriptor, /*secondarySortDescriptor,*/ tertiarySortDescriptor/*, quaternarySortDescriptor*/]
+
+        self.fetchedResultsController = NSFetchedResultsController<Todo>(
+            fetchRequest: todoFetchRequest,
+            managedObjectContext: managedObjectContext,
+            sectionNameKeyPath: "dateAndTime",
+            cacheName: nil)
+
+        self.fetchedResultsController.delegate = self
+
+    }
     
     func dateToString(date: Date) -> String {
         let formatter = DateFormatter()
@@ -135,6 +156,7 @@ final class ScheduleVC: UIViewController {
         self.taskTable.delegate = self
         self.taskTable.dataSource = self
         
+
         
         
     }
@@ -168,18 +190,36 @@ final class ScheduleVC: UIViewController {
 extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell")
-//        cell?.textLabel?.text =
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        
+        
+        let todo = fetchedResultsController.object(at: indexPath)
+        dateFormatter.locale = Locale(identifier: "en_ID")
+        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
+        print(todo.title)
+        cell.textLabel?.text = todo.title
+        return cell
     }
+    
+    
     
     
 }
@@ -211,16 +251,16 @@ extension ScheduleVC: CalendarDelegate {
         var taskEvent = [dataCell]
         selectDate = date ?? Date()
         calendarView.reloadData()
-        for i in dataCell.enumerated()
-        {
-            var newDate = formatter
-            print(i.element.start)
-            print(selectDate)
-            if i.element.start == selectDate
-            {
-                print("sfadsaaad")
-            }
-        }
+//        for i in dataCell.enumerated()
+//        {
+//            var newDate = formatter
+//            print(i.element.start)
+//            print(selectDate)
+//            if i.element.start == selectDate
+//            {
+//                print("sfadsaaad")
+//            }
+//        }
         taskTable.reloadData()
     }
     
@@ -253,7 +293,25 @@ extension ScheduleVC {
     func loadEvents(completion: ([Event]) -> Void) {
         var events = [Event]()
         let decoder = JSONDecoder()
-                
+        
+        configureFetchedResultsController()
+        
+        
+        do {
+            try fetchedResultsController.performFetch()
+            taskTable.reloadData()
+            
+        } catch {
+            print("An error occurred")
+        }
+        
+        let todo = fetchedResultsController.fetchedObjects!
+        
+        for i in todo{
+            print(i.title!)
+        }
+        
+        
         
         
         guard let path = Bundle.main.path(forResource: "events", ofType: "json"),
@@ -261,23 +319,23 @@ extension ScheduleVC {
             let result = try? decoder.decode(ItemData.self, from: data) else { return }
         dataCell.append(newEvent(all_day: false, border_color: "#FFFFFF", color: "#93c47d", end: formatter(date: "2018-12-10T16:30:00+03:00"), id: 1, start: formatter(date: "2018-12-12T16:00:00+03:00"), text_color: "000000", title: "Event Test 1"))
         
-        print(dataCell.enumerated())
+//        print(dataCell.enumerated())
         
         
-        for (idx, item) in dataCell.enumerated() {
-            let startDate = item.start
-            let endDate = item.end
+        for (idx, item) in todo.enumerated() {
+            let startDate = item.dateAndTime
+            let endDate = item.dateAndTime
 //            let startTime = self.timeFormatter(date: startDate)
 //            let endTime = self.timeFormatter(date: endDate)
-            let color = UIColor.hexStringToColor(hex: item.color)
+//            let color = UIColor.hexStringToColor(hex: item.color)
             var event = Event()
             event.id = idx
-            event.start = startDate
-            event.end = endDate
-            event.color = EventColor(color)
-            event.isAllDay = item.all_day
+            event.start = startDate!
+            event.end = endDate!
+            event.color = EventColor(#colorLiteral(red: 0, green: 0.9914394021, blue: 1, alpha: 1))
+            event.isAllDay = true
 //            event.isContainsFile = !item.files.isEmpty
-            event.textForMonth = item.title
+            event.textForMonth = item.title!
             event.text = "\(item.title)"
 //            if item.all_day {
 //                event.text = "\(item.title)"
