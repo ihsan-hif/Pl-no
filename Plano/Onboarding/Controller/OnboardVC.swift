@@ -56,7 +56,7 @@ class OnboardVC: UIViewController {
         let heightConstraint = authorizationButton.heightAnchor.constraint(equalToConstant: 44)
         authorizationButton.addConstraint(heightConstraint)
         
-            self.signInWithAppleStackView.addArrangedSubview(authorizationButton)
+        self.signInWithAppleStackView.addArrangedSubview(authorizationButton)
     }
         
     // - Tag: perform_appleid_password_request
@@ -93,40 +93,110 @@ class OnboardVC: UIViewController {
 extension OnboardVC: ASAuthorizationControllerDelegate {
     /// - Tag: did_complete_authorization
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+//        switch authorization.credential {
+//        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+//
+//            // Create an account in your system.
+//            let userIdentifier = appleIDCredential.user
+//            let givenName = appleIDCredential.fullName?.givenName
+//            let birthName = appleIDCredential.fullName?.familyName
+//            let email = appleIDCredential.email
+//
+//            // For the purpose of this demo app, store the `userIdentifier` in the keychain.
+////            self.saveUserInKeychain(userIdentifier)
+////            self.saveGivenNameInKeychain(givenName!)
+////            self.saveBirthNameInKeychain(birthName!)
+////            self.saveEmailInKeychain(email!)
+//
+//            KeychainItem.currentUserIdentifier = userIdentifier
+//            KeychainItem.currentUserGivenName = givenName
+//            KeychainItem.currentUserBirthName = birthName
+//            KeychainItem.currentUserEmail = email
+//
+//            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
+//            /* self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email) */
+//            self.dismiss(animated: true, completion: nil)
+//
+//        case let passwordCredential as ASPasswordCredential:
+//
+//            // Sign in using an existing iCloud Keychain credential.
+//            let username = passwordCredential.user
+//            let password = passwordCredential.password
+//
+//            // For the purpose of this demo app, show the password credential as an alert.
+//            DispatchQueue.main.async {
+//                self.showPasswordCredentialAlert(username: username, password: password)
+//            }
+//
+//        default:
+//            break
+//        }
+        
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 
-            // Create an account in your system.
-            let userIdentifier = appleIDCredential.user
-            /* let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email */
+                // Create an account in your system.
+                // For the purpose of this demo app, store the these details in the keychain.
+                KeychainItem.currentUserIdentifier = appleIDCredential.user
+                KeychainItem.currentUserGivenName = appleIDCredential.fullName?.givenName
+                KeychainItem.currentUserBirthName = appleIDCredential.fullName?.familyName
+                KeychainItem.currentUserEmail = appleIDCredential.email
                 
-            // For the purpose of this demo app, store the `userIdentifier` in the keychain.
-            self.saveUserInKeychain(userIdentifier)
+                print("User Id - \(appleIDCredential.user)")
+                print("User Name - \(appleIDCredential.fullName?.description ?? "N/A")")
+                print("User Email - \(appleIDCredential.email ?? "N/A")")
+                print("Real User Status - \(appleIDCredential.realUserStatus.rawValue)")
                 
-            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
-            /* self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email) */
-            self.dismiss(animated: true, completion: nil)
-            
-        case let passwordCredential as ASPasswordCredential:
-            
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            // For the purpose of this demo app, show the password credential as an alert.
-            DispatchQueue.main.async {
-                self.showPasswordCredentialAlert(username: username, password: password)
+                if let identityTokenData = appleIDCredential.identityToken,
+                    let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                    print("Identity Token \(identityTokenString)")
+                }
+                
+                //Show Home View Controller
+                self.dismiss(animated: true, completion: nil)
+            } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+                // Sign in using an existing iCloud Keychain credential.
+                let username = passwordCredential.user
+                let password = passwordCredential.password
+                
+                // For the purpose of this demo app, show the password credential as an alert.
+                DispatchQueue.main.async {
+                    let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+                    let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                            message: message,
+                                                            preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
-                
-        default:
-            break
         }
-    }
         
     private func saveUserInKeychain(_ userIdentifier: String) {
         do {
             try KeychainItem(service: "MC1-G7.Plano", account: "userIdentifier").saveItem(userIdentifier)
+        } catch {
+            print("Unable to save userIdentifier to keychain.")
+        }
+    }
+    
+    private func saveGivenNameInKeychain(_ givenName: String) {
+        do {
+            try KeychainItem(service: "MC1-G7.Plano", account: "givenName").saveItem(givenName)
+        } catch {
+            print("Unable to save userIdentifier to keychain.")
+        }
+    }
+    
+    private func saveBirthNameInKeychain(_ birthName: String) {
+        do {
+            try KeychainItem(service: "MC1-G7.Plano", account: "birthName").saveItem(birthName)
+        } catch {
+            print("Unable to save userIdentifier to keychain.")
+        }
+    }
+    
+    private func saveEmailInKeychain(_ email: String) {
+        do {
+            try KeychainItem(service: "MC1-G7.Plano", account: "email").saveItem(email)
         } catch {
             print("Unable to save userIdentifier to keychain.")
         }

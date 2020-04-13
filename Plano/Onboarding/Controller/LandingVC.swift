@@ -22,7 +22,7 @@ class LandingVC: UITabBarController {
         super.viewDidAppear(animated)
         
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
+        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier ?? "") { (credentialState, error) in
             switch credentialState {
             case .authorized:
                 /* DispatchQueue.main.async {
