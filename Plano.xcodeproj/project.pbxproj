@@ -37,6 +37,7 @@
 		2F02A8F5243B871B000D9898 /* Schedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F4243B871B000D9898 /* Schedule.storyboard */; };
 		2F02A8F7243B8733000D9898 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F02A8F6243B8733000D9898 /* Profile.storyboard */; };
 		2F0D09C9243F360D00F00210 /* TeamMembersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0D09C8243F360D00F00210 /* TeamMembersTVC.swift */; };
+		2F1FA2C924441F4800F5EF9F /* InviteMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1FA2C824441F4800F5EF9F /* InviteMemberVC.swift */; };
 		2F570FC7243B09820022C9E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FC6243B09820022C9E7 /* AppDelegate.swift */; };
 		2F570FC9243B09820022C9E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FC8243B09820022C9E7 /* SceneDelegate.swift */; };
 		2F570FCB243B09820022C9E7 /* OnboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F570FCA243B09820022C9E7 /* OnboardVC.swift */; };
@@ -81,6 +82,7 @@
 		2F02A8F4243B871B000D9898 /* Schedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Schedule.storyboard; sourceTree = "<group>"; };
 		2F02A8F6243B8733000D9898 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		2F0D09C8243F360D00F00210 /* TeamMembersTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMembersTVC.swift; sourceTree = SOURCE_ROOT; };
+		2F1FA2C824441F4800F5EF9F /* InviteMemberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InviteMemberVC.swift; path = Plano/Profile/InviteMemberVC.swift; sourceTree = SOURCE_ROOT; };
 		2F570FC3243B09820022C9E7 /* Plano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Plano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F570FC6243B09820022C9E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F570FC8243B09820022C9E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			children = (
 				2C668656243D77C900F3DD52 /* ProfileVC.swift */,
 				2F0D09C8243F360D00F00210 /* TeamMembersTVC.swift */,
+				2F1FA2C824441F4800F5EF9F /* InviteMemberVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				2CC2C331243F1ADD0025BBF6 /* ReminderCell.swift in Sources */,
 				2C1C43F4243C2296007E75A8 /* AddTodoTableVC.swift in Sources */,
 				2CC2C31F243F0A7F0025BBF6 /* AddTodoCell.swift in Sources */,
+				2F1FA2C924441F4800F5EF9F /* InviteMemberVC.swift in Sources */,
 				2CC2C3412440CFCC0025BBF6 /* SubTodoTableVC.swift in Sources */,
 				2F570FD1243B09820022C9E7 /* Plano.xcdatamodeld in Sources */,
 				2C668660243ECC3B00F3DD52 /* Model.swift in Sources */,
@@ -606,14 +610,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Plano/Plano.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWVAEMBXMM;
+				DEVELOPMENT_TEAM = 6X2P3HV7HT;
 				INFOPLIST_FILE = Plano/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "MC1-G7.Plano";
+				PRODUCT_BUNDLE_IDENTIFIER = "MC1-G7.Plan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -627,14 +631,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Plano/Plano.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QWVAEMBXMM;
+				DEVELOPMENT_TEAM = 6X2P3HV7HT;
 				INFOPLIST_FILE = Plano/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "MC1-G7.Plano";
+				PRODUCT_BUNDLE_IDENTIFIER = "MC1-G7.Plan";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
