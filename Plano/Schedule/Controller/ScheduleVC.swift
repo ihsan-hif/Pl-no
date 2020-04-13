@@ -168,6 +168,7 @@ final class ScheduleVC: UIViewController, NSFetchedResultsControllerDelegate {
         frame.origin.y = 50
         frame.size.height = 500
         calendarView.reloadFrame(frame)
+        calendarView.reloadData()
     }
     
     @objc func today(sender: UIBarButtonItem) {
@@ -202,7 +203,7 @@ extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
 //            let currentSection = sections[section]
 //            return currentSection.numberOfObjects
 //        }
-//
+
 //        return 0
         dataTableView.count
     }
@@ -211,13 +212,14 @@ extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         
         
-        let todo = fetchedResultsController.object(at: indexPath)
+        
         dateFormatter.locale = Locale(identifier: "en_ID")
         dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
 //        print(todo.title)
         cell.textLabel?.text = dataTableView[indexPath.row].title
-        cell.detailTextLabel?.text = dateToString(date: dataTableView[indexPath.row].dateAndTime!)
+        
+//        cell.textLabel?.text = todo.title
         return cell
     }
     
@@ -258,15 +260,12 @@ extension ScheduleVC: CalendarDelegate {
         dataTableView.removeAll()
         for i in Todo.fetchAll()
         {
-//            var newDate = formatter
-            print(i.dateAndTime)
-            print(selectDate)
             if i.dateAndTime == selectDate
             {
-                dataTableView.append(i.`self`())
+                dataTableView.append(i.self)
             }
         }
-//        print(dataTableView)
+        print("dataTableView \(dataTableView) + angka \(dataTableView.count)")
         taskTable.reloadData()
     }
     
@@ -297,6 +296,7 @@ extension ScheduleVC: CalendarDataSource {
 
 extension ScheduleVC {
     func loadEvents(completion: ([Event]) -> Void) {
+        calendarView.reloadData()
         var events = [Event]()
         let decoder = JSONDecoder()
         
@@ -305,7 +305,6 @@ extension ScheduleVC {
         
         do {
             try fetchedResultsController.performFetch()
-            taskTable.reloadData()
             
         } catch {
             print("An error occurred")
@@ -326,6 +325,7 @@ extension ScheduleVC {
         dataCell.append(newEvent(all_day: false, border_color: "#FFFFFF", color: "#93c47d", end: formatter(date: "2018-12-10T16:30:00+03:00"), id: 1, start: formatter(date: "2018-12-12T16:00:00+03:00"), text_color: "000000", title: "Event Test 1"))
         
 //        print(dataCell.enumerated())
+        
         
         
         for (idx, item) in todo.enumerated() {
