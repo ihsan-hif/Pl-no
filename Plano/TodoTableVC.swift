@@ -306,7 +306,7 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate, Sw
                 self.statusUpdateForTodo(todo)
                 
                 let cell = tableView.cellForRow(at: indexPath) as! TodoCell
-                //cell.setStatus(todo.status, animated: true)
+                cell.setStatus(todo.status, animated: true)
                 
                 let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: todo.title!)
                 attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
