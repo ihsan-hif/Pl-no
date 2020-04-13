@@ -254,7 +254,6 @@ extension ScheduleVC: CalendarDelegate {
         dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
         
-        print("\(curDate) asdasdasd")
         for i in Todo.fetchAll()
         {
 //            var newDate = formatter

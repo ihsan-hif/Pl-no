@@ -18,8 +18,8 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //profileName.text = KeychainItem.currentUserGivenName
-        profileName.text = "Your Name"
+        profileName.text = KeychainItem.currentUserGivenName! + " " + KeychainItem.currentUserBirthName! 
+        //profileName.text = "Your Name"
     }
     
     override func viewWillAppear(_ animated: Bool) {
