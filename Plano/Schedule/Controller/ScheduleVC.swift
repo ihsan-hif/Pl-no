@@ -190,20 +190,21 @@ final class ScheduleVC: UIViewController, NSFetchedResultsControllerDelegate {
 extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if let sections = fetchedResultsController.sections {
-            return sections.count
-        }
+//        if let sections = fetchedResultsController.sections {
+//            return sections.count
+//        }
 
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
-            let currentSection = sections[section]
-            return currentSection.numberOfObjects
-        }
-        
-        return 0
+//        if let sections = fetchedResultsController.sections {
+//            let currentSection = sections[section]
+//            return currentSection.numberOfObjects
+//        }
+//
+//        return 0
+        dataTableView.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -215,7 +216,8 @@ extension ScheduleVC: UITableViewDelegate,UITableViewDataSource{
         dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
 //        print(todo.title)
-        cell.textLabel?.text = todo.title
+        cell.textLabel?.text = dataTableView[indexPath.row].title
+        cell.detailTextLabel?.text = dateToString(date: dataTableView[indexPath.row].dateAndTime!)
         return cell
     }
     
@@ -253,8 +255,7 @@ extension ScheduleVC: CalendarDelegate {
         dateFormatter.locale = Locale(identifier: "en_ID")
         dateFormatter.dateFormat = "MMM d, yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT+7:00")
-        
-        print("\(curDate) asdasdasd")
+        dataTableView.removeAll()
         for i in Todo.fetchAll()
         {
 //            var newDate = formatter
