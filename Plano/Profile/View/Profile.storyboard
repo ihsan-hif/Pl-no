@@ -135,6 +135,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="WP6-5v-FKz"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="profileName" destination="e8s-bW-fFl" id="I3o-Sy-CPM"/>
                         <outlet property="signInSignOutLabelOutlet" destination="f8U-pB-rhd" id="u54-oZ-50n"/>
                     </connections>
                 </viewController>

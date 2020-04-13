@@ -11,18 +11,21 @@ import AuthenticationServices
 
 class ProfileVC: UIViewController {
 
+    @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var signInSignOutLabelOutlet: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //profileName.text = KeychainItem.currentUserGivenName
+        profileName.text = "Your Name"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let appleIDProvider = ASAuthorizationAppleIDProvider()
-        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier) { (credentialState, error) in
+        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier ?? "") { (credentialState, error) in
             switch credentialState {
             case .authorized:
                 DispatchQueue.main.async {

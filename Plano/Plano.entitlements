@@ -9,15 +9,23 @@
 		<string>Default</string>
 	</array>
 	<key>com.apple.developer.icloud-container-identifiers</key>
-	<array/>
+	<array>
+		<string>iCloud.MC1-G7.Plano</string>
+	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
 		<string>CloudKit</string>
 		<string>CloudDocuments</string>
 	</array>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
-	<array/>
+	<array>
+		<string>iCloud.MC1-G7.Plano</string>
+	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)MC1-G7.Plano</string>
+	</array>
 </dict>
 </plist>
