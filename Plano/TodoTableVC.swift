@@ -58,22 +58,6 @@ class TodoTableVC: UITableViewController, NSFetchedResultsControllerDelegate, Sw
     
     
     // MARK: - IBAction
-//    @objc func checkBoxButtonAction(_ sender: UIButton) {
-//        //let buttonTag = sender.tag
-//        if todoToDelete?.status == false {
-//            managedObjectContext.performAndWait {
-//                todoToDelete?.status = true
-//                try? managedObjectContext.save()
-//            }
-//        }
-//        else {
-//            managedObjectContext.performAndWait {
-//                todoToDelete?.status = false
-//                try? managedObjectContext.save()
-//            }
-//        }
-//
-//    }
     
     
     // MARK: - Functions

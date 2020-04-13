@@ -306,6 +306,62 @@ extension UIViewController {
     }
 }
 
+extension Date: Strideable {
+    public func distance(to other: Date) -> TimeInterval {
+        return other.timeIntervalSinceReferenceDate - self.timeIntervalSinceReferenceDate
+    }
+
+    public func advanced(by n: TimeInterval) -> Date {
+        return self + n
+    }
+}
+
+private extension DateComponents {
+  func scaled(by: Int) -> DateComponents {
+    let s: (Int?)->Int? = { $0.map { $0 * by } }
+    return DateComponents(calendar: calendar,
+                          timeZone: timeZone,
+                          era: s(era),
+                          year: s(year), month: s(month), day: s(day),
+                          hour: s(hour), minute: s(minute), second: s(second), nanosecond: s(nanosecond),
+                          weekday: s(weekday), weekdayOrdinal: s(weekdayOrdinal), quarter: s(quarter),
+                          weekOfMonth: s(weekOfMonth), weekOfYear: s(weekOfYear), yearForWeekOfYear: s(yearForWeekOfYear))
+    }
+}
+
+extension Calendar {
+
+  func makeIterator(components: DateComponents, from date: Date, until: Date?) -> Calendar.DateComponentsIterator {
+    return DateComponentsIterator(calendar: self, startDate: date, cutoff: until, components: components, count: 0)
+  }
+
+  func makeIterator(every component: Component, stride: Int = 1, from date: Date, until: Date?) -> Calendar.DateComponentsIterator {
+    var components = DateComponents(); components.setValue(stride, for: component)
+    return makeIterator(components: components, from: date, until: until)
+  }
+
+  struct DateComponentsIterator: IteratorProtocol {
+    let calendar: Calendar
+    let startDate: Date
+    let cutoff: Date?
+    let components: DateComponents
+    var count: Optional<Int> = 0
+
+    mutating func next() -> Date? {
+      guard let count = self.count else { return nil } // Ended.
+      guard let nextDate = calendar.date(byAdding: components.scaled(by: count), to: startDate) else {
+        self.count = nil; return nil
+      }
+      if let cutoff = self.cutoff, nextDate > cutoff {
+        self.count = nil; return nil
+      }
+      self.count = count + 1
+      return nextDate
+    }
+  }
+}
+
+
 class RoundedImageView: UIImageView {
     override func layoutSubviews() {
         super.layoutSubviews()
