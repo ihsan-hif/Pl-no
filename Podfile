@@ -7,5 +7,6 @@ target 'Plano' do
 
   # Pods for Plano
   pod 'KVKCalendar'
+  pod 'SwipeCellKit'
 
 end

@@ -43,6 +43,7 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
             todo.setValue(titleTextField.text, forKey: "title")
         }
         
+        todo.status = false
         todo.title = titleTextField.text
         todo.board = selectedBoard[0]
         todo.priority = Int64(selectedPriorityInt[0])
@@ -267,6 +268,20 @@ class AddTodoTableVC: UITableViewController, UITextFieldDelegate {
 //            return 3
 //        }
 //    }
+    
+//    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        if section == 0 {
+//            return 20
+//        }
+//        return 0
+//    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 2 {
+            return .leastNormalMagnitude
+        }
+        return 36
+    }
 
     
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
