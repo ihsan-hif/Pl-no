@@ -15,7 +15,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rsz_michael-dam-mez3pofgs_k-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="iVu-Uy-b8v">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rsz_carlos-macias-t03uawuzy7q-unsplash" translatesAutoresizingMaskIntoConstraints="NO" id="iVu-Uy-b8v">
                                 <rect key="frame" x="135.44122657581329" y="158" width="140.00000000000011" height="140.00000000000011"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
@@ -309,6 +309,7 @@
     </scenes>
     <resources>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="rsz_carlos-macias-t03uawuzy7q-unsplash" width="2000" height="2000"/>
         <image name="rsz_michael-dam-mez3pofgs_k-unsplash" width="1872" height="1872"/>
     </resources>
 </document>
